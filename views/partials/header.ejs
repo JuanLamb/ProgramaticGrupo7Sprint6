@@ -1,0 +1,60 @@
+
+<header class="header-home">
+    <section class="headerElements">
+        <div class="bars">
+            <a href="#"><i class="fas fa-bars"></i></a>
+        </div>
+        <div class="logo">
+            <a href="/"><img src="/images/logo/logo.png" alt="logo"></a>    
+        </div>
+        <div class="central-navbar">
+            <ul>
+                <li><a href="/products">Escalada</a></li>
+                <li><a href="/products">Camperas</a></li>
+                <li><a href="/products">Calzado</a></li>
+                <li><a href="/products">Mochilas</a></li>
+                <li><a href="/products">Marcas</a></li>
+            </ul>
+        </div>
+        <nav class="main-nav">
+            
+            <div class="right-navbar">
+
+                <% if(locals.isLogged){ %>
+
+                        <div class="right-navbarItem">
+                            <a href="/profile"><i class="fas fa-user-circle"></i></a>
+                        </div>
+
+                        <div class="right-navbarItem">
+                            <a href="/productCart"><i class="fas fa-shopping-cart"></i></a>
+                        </div>
+    
+                        <div class="right-navbarItem">
+                            <a href="/logout" class="logoutText">Salir</a>
+                        </div>
+
+                <% }else { %> 
+
+                    <div class="right-navbarItem">
+                        <a href="/login"><i class="fas fa-user-circle"></i></a>
+                    </div>
+
+                    <div class="right-navbarItem">
+                        <a href="/productCart"><i class="fas fa-shopping-cart"></i></a>
+                    </div>
+
+                    <div class="right-navbarItem">
+                        <a href="/products/create"><p>Crear</p></a>
+                    </div>
+                <% } %>
+            </div>
+        </nav>
+    </section>
+    <section class="searchBox">
+        <form action="#" method="POST" class="searchForm">
+            <input type="text" class="searchBar" name="search" placeholder="Busca en nuestra tienda">
+            <button class="searchButton"><a><i class="fas fa-search"></i></a></button>
+        </form>
+    </section>
+</header>

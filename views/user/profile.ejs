@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>Login Botacura</title>
+</head>
+
+<%- include('../partials/head') %>
+
+    <body>
+
+        <%- include('../partials/header') %>
+
+            <main>
+                <div class="userProfileContainer" style="margin-top: 40px;">
+                    <div class="userProfileData">
+                        <h2>Hola <%= user.nombreApellido %></h2>
+                        <img src="/images/users/<%= user.avatar %>">
+                        <br>
+                        <br>
+                        <div class="userProfileEmail"><%= user.email %> </div>
+                    </div>
+                    <div class="middle">
+                        <div class="text">Cambiar Foto</div>
+                      </div>
+                </div>
+                <div class="favUserProducts">
+                    <h3>Estos son algunos de tus productos favoritos</h3>
+                </div>
+            </main>
+
+
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>

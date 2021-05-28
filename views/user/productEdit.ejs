@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/productEdit.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>Editar producto</title>
+</head>
+
+<%- include('../partials/head') %>
+
+    <body>
+
+        <%- include('../partials/header') %>
+
+        <main class="productForm">
+
+            <h1>Editar <%= product.nombre  %> </h1>
+    
+            <section class="edicionCreacion">
+                <article class="caracteristicas">
+                    <form method="POST" action="/products/<%= product.id %>?_method=PUT" enctype="multipart/form-data">
+        
+                        <div class="nombre">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" name="nombre" id="nombre" value="<%= product.nombre %>">
+                        </div>
+        
+                        <div class="marca">
+                            <label for="marca">Marca</label>
+                            <input type="text" name="marca" id="marca" value="<%= product.marca %>">
+                        </div>
+        
+                       <div class="formBoxes">
+                            <div class="categoria">
+                                <label for="categoria">Categoría</label>
+                                <select name="categoria" id="categoria">
+
+                                    <% categoryArray.forEach(category => { %>
+                                        <% if (category == product.categoria) { %>
+                                            <option value="<%= product.categoria %>" selected> <%= product.categoria %> </option>
+                                        <% }else{ %>
+                                            <option value="<%= category %>"> <%= category %> </option>
+                                       <% } %>
+                                    <% }) %> 
+                                </select>
+                            </div>
+            
+                            <div class="checkboxes">
+                                <h3 class="colorTitle">Colores</h3>
+    
+                                <div class="checkboxBox">
+                                    <label for="azul">Azul</label>
+                                    <input type="checkbox" id="azul" name="color" value="azul" <%= product.color.find(color => color == "azul") ? 'checked' : '' %> >
+                                </div>
+                                
+                                <div class="checkboxBox">
+                                    <label for="rojo">Rojo</label>
+                                    <input type="checkbox" id="rojo" name="color" value="rojo" <%= product.color.find(color => color == "rojo") ? 'checked' : '' %>>
+                                </div>
+    
+                                <div class="checkboxBox">
+                                    <label for="negro">Negro</label>
+                                    <input type="checkbox" id="negro" name="color" value="negro" <%= product.color.find(color => color == "negro") ? 'checked' : '' %>>
+                                </div>
+    
+                                <div class="checkboxBox">
+                                    <label for="Verde">Verde</label>
+                                    <input type="checkbox" id="verde" name="color" value="verde" <%= product.color.find(color => color == "verde") ? 'checked' : '' %>>
+                                </div>
+                            </div>
+            
+                            <div class="checkboxes">
+                                <h3 class="tallesTitle">Talles</h3>
+    
+                                <div class="checkboxBox">
+                                    <label for="XL">XL</label>
+                                    <input type="checkbox" id="XL" name="talle" value="XL" <%= product.talle.find(talle => talle == "XL") ? 'checked' : '' %>>
+                                </div>
+                                
+                                <div class="checkboxBox">
+                                    <label for="L">L</label>
+                                    <input type="checkbox" id="L" name="talle" value="L" <%= product.talle.find(talle => talle == "L") ? 'checked' : '' %>>
+                                </div>
+    
+                                <div class="checkboxBox">
+                                    <label for="M">M</label>
+                                    <input type="checkbox" id="M" name="talle" value="M" <%= product.talle.find(talle => talle == "M") ? 'checked' : '' %>>
+                                </div>
+    
+                                <div class="checkboxBox">
+                                    <label for="S">S</label>
+                                    <input type="checkbox" id="S" name="talle" value="S" <%= product.talle.find(talle => talle == "S") ? 'checked' : '' %>>
+                                </div>
+                            </div>
+        
+                       <div class="priceBoxes">
+                            <div class="precio">
+                                <label for="precio">Precio</label>
+                                <input type="number" name="precio" id="precio" value="<%= product.precio %>">
+                            </div>
+            
+                            <div class="descuento">
+                                <label for="descuento">Descuento</label>
+                                <input type="number" name="descuento" id="descuento" value="<%= product.descuento %>">
+                            </div>
+                       </div>
+    
+                       <div class="descripcion">
+                            <label for="descripcion">Descripción</label>
+                            <input type="text" name="descripcion" id="descripcion" value="<%= product.descripcion %>">
+                        </div>
+    
+                        <div class="imagen">
+                            <label for="imagen">Imagen</label>
+                            <input type="file" name="imagen" id="imagen" accept=".jpg">
+                            <input type="hidden" name="oldImagen" value="<%= product.imagen %>">
+                        </div>
+
+                        <div class="radios">
+
+                            <div class="offerRadios">
+                                <h3 class="radioTitle">En oferta?</h3>
+    
+                                <div class="radioContainer">
+                                    <label for="true">SI</label>
+                                    <input type="radio" name="oferta" id="true" value="true" <%= product.oferta == true ? 'checked' : '' %> >
+                                </div>
+        
+                                <div class="radioContainer">
+                                    <label for="false">NO</label>
+                                    <input type="radio" name="oferta" id="false" value="false" <%= product.oferta == false ? 'checked' : '' %>>
+                                </div>
+                            </div>
+    
+                            <div class="temporadaRadios">
+                                <h3 class="radioTitle">De temporada?</h3>
+                                
+                                <div class="radioContainer">
+                                    <label for="true">SI</label>
+                                    <input type="radio" name="temporada" id="true" value="true" <%= product.temporada == true ? 'checked' : '' %>>
+                                </div>
+        
+                                <div class="radioContainer">
+                                    <label for="false">NO</label>
+                                    <input type="radio" name="temporada" id="false" value="false" <%= product.temporada == false ? 'checked' : '' %>>
+                                </div>
+                            </div>
+    
+                        </div>
+                        
+                        <div class="botones">
+                            <button type="submit">Actualizar</button>
+                        </div>
+    
+                    </form>
+
+                    <form action="/products/<%= product.id %>?_method=DELETE" class="delete" method="POST" enctype="multipart/form-data">
+                        <div class="botones">
+                            <button class="deleteButton" type="submit">Borrar producto</button>
+                        </div>
+                    </form>
+                </article>
+                
+            </section>
+        </main>
+
+        <%- include('../partials/footer') %>
+
+    </body>
+
+</html>
