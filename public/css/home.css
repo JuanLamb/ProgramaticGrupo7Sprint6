@@ -413,12 +413,17 @@ html {
     padding: 5px;
 }
 
-.catalog-main .filters div form input {
-    margin: 5px 0 5px 0;
-    background-color: #e48257;
-    border: none;
-    padding: 10px;
+.catalog-main .filters div form button {
+    justify-content: center;
+    background-color: #3a6351;
+    padding: 5px;
     border-radius: 5px;
+    color: #fff;
+}
+
+.catalog-main .filters div form button:hover {
+    background-color: #70b195;
+    transition: 300ms;
 }
 
 @media (min-width: 769px) {

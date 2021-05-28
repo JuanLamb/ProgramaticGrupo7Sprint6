@@ -54,11 +54,17 @@ main.productForm {
         }
         
         .botonGuardar button {
-            border: none;
-            padding: 10px;
-            width: 100px;
+            justify-content: center;
+            background-color: #3a6351;
+            padding: 5px;
             border-radius: 5px;
-            background-color: #e48257;
+            width: 90px;
+            color: #fff;
+        }
+
+        .botonGuardar button:hover {
+            background-color: #70b195;
+            transition: 300ms;
         }
 
         .edicionCreacion input {
