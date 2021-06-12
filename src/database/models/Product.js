@@ -68,6 +68,19 @@ module.exports = function(sequelize, DataTypes) {
         Product.belongsTo(models.Color, {
             as: "color",
         });
+        Product.belongsTo(models.Size, {
+            as: "size",
+        });
+        Product.belongsTo(models.Category, {
+            as: "category",
+        });
+        Product.belongsTo(models.Brand, {
+            as: "brand",
+        });
+        Product.belongsTo(models.Orderdetail, {
+            as: "Orderdetail",
+            foreignKey: "products_id"
+        });
     }
 
     return Product;

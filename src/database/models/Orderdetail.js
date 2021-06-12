@@ -28,5 +28,11 @@ module.exports = function(sequelize, DataTypes) {
 
     let Orderdetail = sequelize.define(alias, cols, config);
 
+    Orderdetail.associate = function(models) {
+        Orderdetail.hasOne(models.Product, {
+            as: "product"
+        });
+    }
+
     return Orderdetail;
 }

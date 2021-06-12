@@ -17,6 +17,8 @@ module.exports = function(sequelize, DataTypes) {
         timestamps: false
     }
 
+    let Gender = sequelize.define(alias, cols, config);
+
     Gender.associate = function(models) {
         Gender.hasMany(models.Product, {
             as: "products",
@@ -24,7 +26,6 @@ module.exports = function(sequelize, DataTypes) {
         });
     }
 
-    let Gender = sequelize.define(alias, cols, config);
 
     return Gender;
 }

@@ -19,5 +19,12 @@ module.exports = function(sequelize, DataTypes) {
 
     let Size = sequelize.define(alias, cols, config);
 
+    Size.associate = function(models) {
+        Size.hasMany(models.Product, {
+            as: "products",
+            foreignKey: "sizes_id"
+        });
+    }
+
     return Size;
 }
