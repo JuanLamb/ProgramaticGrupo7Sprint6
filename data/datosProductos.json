@@ -166,5 +166,23 @@
   "temporada": false,
   "imagen": "img-1620677699281.jpg",
   "id": 9
+ },
+ {
+  "nombre": "efssds",
+  "marca": "sdfds",
+  "categoria": "Escalada",
+  "color": [
+   "rojo"
+  ],
+  "talle": [
+   "L"
+  ],
+  "precio": "445",
+  "descuento": "445",
+  "descripcion": "hjkhj",
+  "oferta": true,
+  "temporada": true,
+  "imagen": "img-1623697543960.jpg",
+  "id": 10
  }
 ]

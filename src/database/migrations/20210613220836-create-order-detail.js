@@ -15,10 +15,18 @@ module.exports = {
         type: Sequelize.DECIMAL
       },
       orders_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'order',
+          key: 'id'
+        }
       },
       products_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'product',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

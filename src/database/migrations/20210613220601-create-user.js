@@ -24,13 +24,25 @@ module.exports = {
         type: Sequelize.STRING
       },
       avatars_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'avatar',
+          key: 'id'
+        }
       },
       adresses_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'adress',
+          key: 'id'
+        }
       },
       user_categories_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'user_category',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
