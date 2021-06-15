@@ -17,12 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Shipping.init({
+    name: DataTypes.STRING,
     street: DataTypes.STRING,
     dni: DataTypes.INTEGER,
     number: DataTypes.INTEGER,
     price: DataTypes.DECIMAL,
-    phoneNumber: DataTypes.INTEGER,
-    name: DataTypes.STRING
+    phoneNumber: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Shipping',

@@ -35,35 +35,35 @@ module.exports = {
       brands_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'brand',
+          model: 'brands',
           key: 'id'
         }
       },
       genders_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'gender',
+          model: 'genders',
           key: 'id'
         }
       },
       colors_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'color',
+          model: 'colors',
           key: 'id'
         }
       },
       sizes_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'size',
+          model: 'sizes',
           key: 'id'
         }
       },
       categories_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'category',
+          model: 'categories',
           key: 'id'
         }
       },
