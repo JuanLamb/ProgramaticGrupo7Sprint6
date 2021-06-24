@@ -9,27 +9,31 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      Order.belongsTo(models.User);
-      Order.hasMany(models.Order_details, {
-        as: "order_details",
-        foreignKey: "orders_id"
-    });
-      Order.belongsTo(models.Shipping);
-      Order.belongsTo(models.State);
-      Order.belongsTo(models.Payment);
+    static associate({ User, Shipping, State, Payment, Detail }) {
+      // define association here
+      this.belongsTo(User, { foreignKey: 'userId', as: 'user'})
+      this.belongsTo(Shipping, { foreignKey: 'shippingId', as: 'shipping'})
+      this.belongsTo(State, { foreignKey: 'stateId', as: 'state'})
+      this.belongsTo(Payment, { foreignKey: 'paymentId', as: 'payment'})
+      this.hasMany(Detail, { foreignKey: 'orderId'})
     }
   };
   Order.init({
-    number: DataTypes.INTEGER,
-    date: DataTypes.DATE,
-    total: DataTypes.DECIMAL,
-    shippings_id: DataTypes.INTEGER,
-    states_id: DataTypes.INTEGER,
-    payments_id: DataTypes.INTEGER,
-    users_id: DataTypes.INTEGER
+    number: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    total: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    }
   }, {
     sequelize,
+    tableName: 'orders',
     modelName: 'Order',
   });
   return Order;

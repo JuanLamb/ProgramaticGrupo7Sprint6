@@ -9,18 +9,21 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      Color.hasMany(models.Product, {
-        as: "products",
-        foreignKey: "colors_id"
-    });
+    static associate({ Product }) {
+      // define association here
+      this.hasMany(Product, { foreignKey: 'colorId'})
     }
   };
   Color.init({
-    color: DataTypes.STRING
+    color: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
+    tableName: 'colors',
     modelName: 'Color',
+    timestamps: false
   });
   return Color;
 };

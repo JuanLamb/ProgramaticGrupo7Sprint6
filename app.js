@@ -7,6 +7,8 @@ const session = require('express-session');
 const cookies = require('cookie-parser');
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 
+const { sequelize, Color, Role, Address, Avatar, User } = require("./src/database/models"); //Generado para probar la DB BORRAR
+
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +34,12 @@ app.use('/', userRouter);
 app.use('/products', productsRouter);
 
 
-app.listen(port || 3000, () => {
+
+
+
+
+app.listen(port || 3000, async () => {
     console.log('Servidor corriendo en puerto');
+    await sequelize.authenticate();
+    console.log('Database conectada!')
 });

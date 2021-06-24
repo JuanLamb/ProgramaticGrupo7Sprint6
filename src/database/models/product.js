@@ -9,39 +9,55 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      Product.belongsTo(models.Color);
-      Product.belongsTo(models.Gender);
-      Product.belongsTo(models.Size);
-      Product.belongsTo(models.Category);
-      Product.belongsTo(models.Brand);
-      Product.hasMany(models.Image, {
-        as: "images",
-        foreignKey: "products_id"
-    });
-      Product.hasOne(models.Order_detail,{
-        as:"order_details",
-        foreignKey: "products_id"
-      });
+    static associate({ Color, Gender, Size, Category, Brand, Image, Detail }) {
+      // define association here
+      this.belongsTo(Color, { foreignKey: 'colorId', as: 'color'})
+      this.belongsTo(Gender, { foreignKey: 'genderId', as: 'gender'})
+      this.belongsTo(Size, { foreignKey: 'sizeId', as: 'size'})
+      this.belongsTo(Category, { foreignKey: 'categoryId', as: 'category'})
+      this.belongsTo(Brand, { foreignKey: 'brandId', as: 'brand'})
+      this.hasMany(Image, { foreignKey: 'productId'})
+      this.hasMany(Detail, { foreignKey: 'productId'})
     }
   };
   Product.init({
-    name: DataTypes.STRING,
-    price: DataTypes.DECIMAL,
-    stock_min: DataTypes.INTEGER,
-    stock_max: DataTypes.INTEGER,
-    discount: DataTypes.INTEGER,
-    description: DataTypes.TEXT,
-    offer: DataTypes.INTEGER,
-    season: DataTypes.INTEGER,
-    brands_id: DataTypes.INTEGER,
-    genders_id: DataTypes.INTEGER,
-    colors_id: DataTypes.INTEGER,
-    sizes_id: DataTypes.INTEGER,
-    categories_id: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    price: {
+      type: DataTypes.DECIMAL,
+      allowNull: false
+    },
+    stockMin: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    stockMax: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    discount: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    offer: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    season: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
+    tableName: 'products',
     modelName: 'Product',
+    timestamps: false
   });
   return Product;
 };

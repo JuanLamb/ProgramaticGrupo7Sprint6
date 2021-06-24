@@ -1,4 +1,5 @@
-Creacion y migracion de modelos en orden:
+Se creo cada modelo en el orden presentado a continuacion. Luego se agrego en cada archivo de migraciones las columnas correspondientes a los foreignIds, y se agregaron las respectivas asociaciones en cada archivo de modelo.
+Tambien se eliminaron las timestamps de cada tabla, exeptuando a User, Order y Detail. Finalmente se ejecuto la migracion de cada archivo, uno por uno en el orden presentado:
 
 sequelize model:generate --name Color --attributes color:string
 
@@ -20,16 +21,16 @@ sequelize model:generate --name Adress --attributes street:string,number:integer
 
 sequelize model:generate --name Avatar --attributes name:string
 
-sequelize model:generate --name User_category --attributes name:string
+sequelize model:generate --name Role --attributes name:string
 
-sequelize model:generate --name User --attributes first_name:string,last_name:string,username:string,email:string,password:string,avatars_id:integer,adresses_id:integer,user_categories_id:integer
+sequelize model:generate --name User --attributes firstName:string,lastName:string,username:string,email:string,password:string
 
-sequelize model:generate --name Product --attributes name:string,price:decimal,stock_min:integer,stock_max:integer,discount:integer,description:text,offer:integer,season:integer,brands_id:integer,genders_id:integer,colors_id:integer,sizes_id:integer,categories_id:integer
+sequelize model:generate --name Product --attributes name:string,price:decimal,stockMin:integer,stockMax:integer,discount:integer,description:text,offer:integer,season:integer
 
-sequelize model:generate --name Image --attributes name:string,products_id:integer
+sequelize model:generate --name Image --attributes name:string
 
-sequelize model:generate --name Order --attributes number:integer,date:date,total:decimal,shippings_id:integer,states_id:integer,payments_id:integer,users_id:integer
+sequelize model:generate --name Order --attributes number:integer,date:date,total:decimal,shippingId:integer,stateId:integer,paymentId:integer,userId:integer
 
-sequelize model:generate --name Order_detail --attributes quantity:decimal,subtotal:decimal,orders_id:integer,products_id:integer
+sequelize model:generate --name Detail --attributes quantity:decimal,subtotal:decimal,orderId:integer,productId:integer
 
 

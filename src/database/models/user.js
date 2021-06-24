@@ -9,27 +9,38 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      User.belongsTo(models.Adress);
-      User.belongsTo(models.Avatar);
-      User.hasMany(models.Order, {
-        as: "orders",
-        foreignkey: "users_id"
-    });
-      User.belongsTo(models.User_Category);
+    static associate({Avatar, Address, Role, Order}) {
+      // define association here
+      this.belongsTo(Avatar, { foreignKey: 'avatarId', as: 'avatar'})
+      this.belongsTo(Address, { foreignKey: 'addressId', as: 'address'})
+      this.belongsTo(Role, { foreignKey: 'roleId', as: 'role'})
+      this.hasMany(Order, { foreignKey: 'userId'})
     }
   };
   User.init({
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    avatars_id: DataTypes.INTEGER,
-    adresses_id: DataTypes.INTEGER,
-    user_categories_id: DataTypes.INTEGER
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
+    tableName: 'users',
     modelName: 'User',
   });
   return User;
