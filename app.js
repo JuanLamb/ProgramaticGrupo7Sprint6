@@ -7,7 +7,7 @@ const session = require('express-session');
 const cookies = require('cookie-parser');
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 
-const { sequelize, Color, Role, Address, Avatar, User } = require("./src/database/models"); //Generado para probar la DB BORRAR
+
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -32,10 +32,6 @@ const productsRouter = require('./routes/productsRouter');
 app.use('/', homeRouter);
 app.use('/', userRouter);
 app.use('/products', productsRouter);
-
-
-
-
 
 
 app.listen(port || 3000, async () => {
