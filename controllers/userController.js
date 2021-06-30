@@ -1,9 +1,14 @@
 const path = require('path');
 const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
-const model = require('../model/model');
+const db = require('../src/database/models');
+const sequelize = db.sequelize;
+const { Op } = require("sequelize");
 
-const userModel = model('datosUsuarios');
+const Users = db.User;
+const Avatars = db.Avatar;
+const Addresses = db.Address;
+const Roles = db.Role;
 
 let userController = {
 
@@ -24,41 +29,60 @@ let userController = {
         res.render('user/productCart2');
     },
 
-    recieveFormRegister: (req, res) =>{
-        const resultValidation = validationResult(req);
-        let newUserEmail = req.body.email;
-        let userInDb = userModel.findFirstByField("email", newUserEmail); 
+    recieveFormRegister: async (req, res) =>{
+        try {
+            // const resultValidation = validationResult(req);
+            // let newUserEmail = req.body.email;
+            // let userInDb = await Users.findOne({where: {email: newUserEmail}}); 
 
-        if (resultValidation.errors.length > 0) {
-            return res.render('user/register', {
-                errors: resultValidation.mapped(),
-                oldData: req.body
-            });
+            // if (resultValidation.errors.length > 0) {
+            //     return res.render('user/register', {
+            //         errors: resultValidation.mapped(),
+            //         oldData: req.body
+            //     });
+            // }
+
+            // if (userInDb) {
+            //     return res.render('user/register', {
+            //         errors: {
+            //             email: {
+            //                 msg: 'Este email ya esta registrado'
+            //             }
+            //         },
+            //         oldData: req.body
+            //     });
+            // }
+            let body = req.body
+            body.avatar = req.file ? req.file.filename : '';
+
+            let avatarToCreate = {name: body.avatar};
+            let avatarCreated = await Avatars.create(avatarToCreate);
+
+            let addressToCreate = {
+                street: req.body.street,
+                number: req.body.number
+            };
+
+            let addressCreated = await Addresses.create(addressToCreate);
+
+            let userToCreate = {
+                ...req.body, 
+                password: bcryptjs.hashSync(req.body.password,10),
+                avatarId: avatarCreated.id,
+                addressId: addressCreated.id,
+                roleId: 1
+            }
+            
+            delete userToCreate.passwordConfirm;
+    
+            let userCreated = await Users.create(userToCreate);
+    
+            return res.redirect('login');
+
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
         }
-        
-        if (userInDb) {
-            return res.render('user/register', {
-                errors: {
-                    email: {
-                        msg: 'Este email ya esta registrado'
-                    }
-                },
-                oldData: req.body
-            });
-        }
-
-        let userToCreate = {
-            ...req.body, 
-            password: bcryptjs.hashSync(req.body.password,10),
-            avatar: req.file.filename,
-        } 
-        
-        delete userToCreate.passwordConfirm;
-
-        let userCreated = userModel.create(userToCreate);
-
-        return res.redirect('login');
-
     },
 
     recieveFormLogin: (req, res) =>{ 

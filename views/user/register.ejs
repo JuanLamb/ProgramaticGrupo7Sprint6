@@ -35,8 +35,20 @@
                         <div class="registerInput">
                             <input 
                                 type="text" 
-                                placeholder="Nombre y apellido" 
-                                name="nombreApellido"
+                                placeholder="Nombre" 
+                                name="firstName"
+                                id="nombre-apellido" 
+                                class= "<%= locals.errors && errors.nombreApellido ? 'is-invalid' : null %>"
+                                value="<%= locals.oldData ? oldData.nombreApellido : null %>" >
+                            <% if (locals.errors && errors.nombreApellido) { %>
+                                <p class="inputError"><%= errors.nombreApellido.msg  %> </p>  
+                            <% } %>
+                        </div>
+                        <div class="registerInput">
+                            <input 
+                                type="text" 
+                                placeholder="Apellido" 
+                                name="lastName"
                                 id="nombre-apellido" 
                                 class= "<%= locals.errors && errors.nombreApellido ? 'is-invalid' : null %>"
                                 value="<%= locals.oldData ? oldData.nombreApellido : null %>" >
@@ -49,7 +61,7 @@
                             <input 
                                 type="text" 
                                 placeholder="Usuario" 
-                                name="usuario" 
+                                name="username" 
                                 id="usuario" 
                                 minlength="5"
                                 class= "<%= locals.errors && errors.usuario ? 'is-invalid' : null %>"
@@ -89,9 +101,22 @@
                         <div class="registerInput">
                             <input 
                                 type="text" 
-                                name="domicilio" 
+                                name="street" 
+                                id="Calle" 
+                                placeholder="Calle" 
+                                class= "<%= locals.errors && errors.domicilio ? 'is-invalid' : null %>"
+                                value="<%= locals.oldData ? oldData.domicilio : null %>">
+                            <% if (locals.errors && errors.domicilio) { %>
+                                <p class="inputError"><%= errors.domicilio.msg  %> </p>  
+                            <% } %>
+                        </div>
+
+                        <div class="registerInput">
+                            <input 
+                                type="text" 
+                                name="number" 
                                 id="domicilio" 
-                                placeholder="Domicilio" 
+                                placeholder="numero" 
                                 class= "<%= locals.errors && errors.domicilio ? 'is-invalid' : null %>"
                                 value="<%= locals.oldData ? oldData.domicilio : null %>">
                             <% if (locals.errors && errors.domicilio) { %>
