@@ -85,9 +85,9 @@ let userController = {
         }
     },
 
-    recieveFormLogin: (req, res) =>{ 
+    recieveFormLogin: async (req, res) =>{ 
         let loginEmail = req.body.email;
-        let userToLogin = userModel.findFirstByField("email", loginEmail);
+        let userToLogin = await Users.findOne({where: {email: loginEmail}});
 
         if (!req.body.email && !req.body.password) {
             return res.render('user/login', {
@@ -131,8 +131,38 @@ let userController = {
         })
     },
 
-    modifyForm: (req, res) =>{
-        // para vista de edicion de perfil de usuario
+    modifyForm: async (req, res) =>{
+        try {
+            let body = req.body
+            body.avatar = req.file ? req.file.filename : '';
+    
+            let user = {id: 1,
+                        avatarId: 2,
+                        addressId: 2,};
+
+            let avatarToUpdate = {name: body.avatar};
+            let avatarUpdated = await Avatars.update(avatarToUpdate, {where: { id: user.avatarId }});
+    
+            let addressToUpdate = {
+                street: req.body.street,
+                number: req.body.number
+            };
+    
+            let addressUpdated = await Addresses.update(addressToUpdate, {where: { id: user.addressId }});
+
+            let userToUpdate = {
+                username: body.username,
+                password: bcryptjs.hashSync(req.body.password,10)
+            };
+
+            let userUpdated = await Users.update(userToUpdate, {where: { id: user.id }});
+
+            res.json(userUpdated);
+
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
     },
 
     profile: (req, res) => {
