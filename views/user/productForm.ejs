@@ -27,22 +27,36 @@
     
                     <div class="nombre">
                         <label for="nombre">Nombre</label>
-                        <input type="text" name="nombre" id="nombre">
+                        <input type="text" name="name" id="nombre">
                     </div>
     
                     <div class="marca">
                         <label for="marca">Marca</label>
-                        <input type="text" name="marca" id="marca">
+                        <select name="brandId" id="marca">
+                            <option value="1">Edelweiss</option>
+                            <option value="2">Black Diamond</option>
+                            <option value="3">Coleman</option>
+                            <option value="4">Salomon</option>
+                        </select>
+                    </div>
+
+                    <div class="genero">
+                        <label for="genero">Genero</label>
+                        <select name="genderId" id="genero">
+                            <option value="1">Hombre</option>
+                            <option value="2">Mujer</option>
+                            <option value="3">Unisex</option>
+                        </select>
                     </div>
     
                    <div class="formBoxes">
                         <div class="categoria">
                             <label for="categoria">Categoría</label>
-                            <select name="categoria" id="categoria">
-                                <option value="Escalada">Escalada</option>
-                                <option value="Camperas">Camperas</option>
-                                <option value="Calzado">Calzado</option>
-                                <option value="Mochilas">Mochilas</option>
+                            <select name="categoryId" id="categoria">
+                                <option value="1" >Escalada</option>
+                                <option value="2">Camperas</option>
+                                <option value="3">Calzado</option>
+                                <option value="4">Mochilas</option>
                             </select>
                         </div>
         
@@ -51,22 +65,22 @@
 
                             <div class="checkboxBox">
                                 <label for="azul">Azul</label>
-                                <input type="checkbox" id="azul" name="color" value="azul">
+                                <input type="checkbox" id="azul" name="colorId" value="1">
                             </div>
                             
                             <div class="checkboxBox">
                                 <label for="rojo">Rojo</label>
-                                <input type="checkbox" id="rojo" name="color" value="rojo">
+                                <input type="checkbox" id="rojo" name="colorId" value="2">
+                            </div>
+
+                            <div class="checkboxBox">
+                                <label for="amarillo">Amarillo</label>
+                                <input type="checkbox" id="amarillo" name="colorId" value="3">
                             </div>
 
                             <div class="checkboxBox">
                                 <label for="negro">Negro</label>
-                                <input type="checkbox" id="negro" name="color" value="negro">
-                            </div>
-
-                            <div class="checkboxBox">
-                                <label for="Verde">Verde</label>
-                                <input type="checkbox" id="verde" name="color" value="verde">
+                                <input type="checkbox" id="negro" name="colorId" value="4">
                             </div>
                         </div>
         
@@ -75,45 +89,45 @@
 
                             <div class="checkboxBox">
                                 <label for="XL">XL</label>
-                                <input type="checkbox" id="XL" name="talle" value="XL">
+                                <input type="checkbox" id="XL" name="sizeId" value="1">
                             </div>
                             
                             <div class="checkboxBox">
                                 <label for="L">L</label>
-                                <input type="checkbox" id="L" name="talle" value="L">
+                                <input type="checkbox" id="L" name="sizeId" value="2">
                             </div>
 
                             <div class="checkboxBox">
                                 <label for="M">M</label>
-                                <input type="checkbox" id="M" name="talle" value="M">
+                                <input type="checkbox" id="M" name="sizeId" value="3">
                             </div>
 
                             <div class="checkboxBox">
                                 <label for="S">S</label>
-                                <input type="checkbox" id="S" name="talle" value="S">
+                                <input type="checkbox" id="S" name="sizeId" value="4">
                             </div>
                         </div>
     
                    <div class="priceBoxes">
                         <div class="precio">
                             <label for="precio">Precio</label>
-                            <input type="number" name="precio" id="precio">
+                            <input type="number" name="price" id="precio">
                         </div>
         
                         <div class="descuento">
                             <label for="descuento">Descuento</label>
-                            <input type="number" name="descuento" id="descuento">
+                            <input type="number" name="discount" id="descuento">
                         </div>
                    </div>
 
                    <div class="descripcion">
                         <label for="descripcion">Descripción</label>
-                        <input type="text" name="descripcion" id="descripcion">
+                        <input type="text" name="description" id="descripcion">
                     </div>
 
                     <div class="imagen">
                         <label for="imagen">Imagen</label>
-                        <input type="file" name="imagen" id="imagen" accept=".jpg" >
+                        <input type="file" name="image" id="imagen" accept=".jpg" >
                     </div>
 
                     <div class="radios">
@@ -123,12 +137,12 @@
 
                             <div class="radioContainer">
                                 <label for="true">SI</label>
-                                <input type="radio" name="oferta" id="true" value="true">
+                                <input type="radio" name="offer" id="true" value="1">
                             </div>
     
                             <div class="radioContainer">
                                 <label for="false">NO</label>
-                                <input type="radio" name="oferta" id="false" value="false">
+                                <input type="radio" name="offer" id="false" value="2">
                             </div>
                         </div>
 
@@ -137,15 +151,25 @@
                             
                             <div class="radioContainer">
                                 <label for="true">SI</label>
-                                <input type="radio" name="temporada" id="true" value="true">
+                                <input type="radio" name="season" id="true" value="1">
                             </div>
     
                             <div class="radioContainer">
                                 <label for="false">NO</label>
-                                <input type="radio" name="temporada" id="false" value="false">
+                                <input type="radio" name="season" id="false" value="2">
                             </div>
                         </div>
 
+                    </div>
+
+                    <div class="stock">
+                        <label for="stockMin">StockMin</label>
+                        <input type="number" name="stockMin" id="stockMin">
+                    </div>
+
+                    <div class="stock">
+                        <label for="stockMax">StockMax</label>
+                        <input type="number" name="stockMax" id="stockMax">
                     </div>
                     
                     <div class="botonGuardar">

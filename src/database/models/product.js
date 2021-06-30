@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(Size, { foreignKey: 'sizeId', as: 'size'})
       this.belongsTo(Category, { foreignKey: 'categoryId', as: 'category'})
       this.belongsTo(Brand, { foreignKey: 'brandId', as: 'brand'})
-      this.hasMany(Image, { foreignKey: 'productId'})
+      this.hasMany(Image, { foreignKey: 'productId', as: "image"})
       this.hasMany(Detail, { foreignKey: 'productId'})
     }
   };
@@ -57,7 +57,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     tableName: 'products',
     modelName: 'Product',
-    timestamps: false
+    paranoid: true,
+    deletedAt: 'destroyTime'
   });
   return Product;
 };

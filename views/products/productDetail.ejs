@@ -21,7 +21,7 @@
     <main class="productDetail">
         <section class="imagenes">
             <div class="imagen-principal">
-                <img src="/images/productos/<%= product.imagen %> " alt="fotoPrincipal">
+                <img src="/images/productos/<%= product.image %> " alt="fotoPrincipal">
             </div>
         </section>
         
@@ -46,27 +46,17 @@
                 <form>
                     <div class="color-ropa">
                         <label>Color</label>
-
-                        <% product.color.forEach(color => { %>
-                            <p><input type="radio" name="color" value= <%= color %> checked> <%= color %> </p>
-                        <% })%>
-
                     </div>
                     
                     <div class="talle-ropa">
-                        <label <%= product.talle == 'undefined' || product.talle.length == 0 ? 'style=display:none' : '' %>>Talle</label>
-
-                        <% product.talle.forEach(talle => { %>
-                            <p><input type="radio" name="talle" value= <%= talle %> checked> <%= talle %> </p>
-                        <% })%>
 
                     </div>
 
                     <div class="botones-precio">
                         <button type="submit"><a href="/productCart">Agregar al carrito</a></button>
                         <div class="parrafos">
-                            <p id="precio">$<%= product.precio  %> </p>
-                            <p <%= product.descuento == 0 ? 'style=display:none' : '' %>><%= product.oferta ? '%' + product.descuento + ' Off' : '0' %> </p>
+                            <p id="precio">$<%= product.price  %> </p>
+                            <p <%= product.discount == 0 ? 'style=display:none' : '' %>><%= product.offer ? '%' + product.descuento + ' Off' : '0' %> </p>
                             
                         </div>
                         <button type="submit"><a href="/profile">Agregar a deseados</a></button>
@@ -75,7 +65,7 @@
             </div>
 
             <div class="descripcion">
-                <p><%= product.descripcion %></p>
+                <p><%= product.description %></p>
             </div>
         </section>
 
@@ -86,10 +76,6 @@
             
             <div class="productos">
 
-                <% categoryProducts.forEach(product => { %>
-                    <%- include('../partials/catalogProduct', { product }) %>
-                <% })%>
-                
             </div>
             
         </section>

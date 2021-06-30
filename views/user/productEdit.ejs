@@ -24,7 +24,7 @@
 
         <main class="productForm">
 
-            <h1>Editar <%= product.nombre  %> </h1>
+            <h1>Editar <%= product.name  %> </h1>
     
             <section class="edicionCreacion">
                 <article class="caracteristicas">
@@ -32,24 +32,44 @@
         
                         <div class="nombre">
                             <label for="nombre">Nombre</label>
-                            <input type="text" name="nombre" id="nombre" value="<%= product.nombre %>">
+                            <input type="text" name="name" id="nombre" value="<%= product.name %>">
                         </div>
         
                         <div class="marca">
                             <label for="marca">Marca</label>
-                            <input type="text" name="marca" id="marca" value="<%= product.marca %>">
+                            <select name="brandId" id="marca">
+                                <% productBrands.forEach(brand => { %>
+                                    <% if (brand.id == product.brandId) { %>
+                                        <option value="<%= product.brandId %>" selected> <%= product.brand.name %> </option>
+                                    <% }else{ %>
+                                        <option value="<%= brand.id %>"> <%= brand.name %> </option>
+                                   <% } %>
+                                <% }) %>
+                            </select> 
+                        </div>
+
+                        <div class="genero">
+                            <label for="genero">Genero</label>
+                            <select name="genderId" id="genero">
+                                <% productGenders.forEach(gender => { %>
+                                    <% if (gender.id == product.genderId) { %>
+                                        <option value="<%= product.genderId %>" selected> <%= product.gender.type %> </option>
+                                    <% }else{ %>
+                                        <option value="<%= gender.id %>"> <%= gender.type %> </option>
+                                   <% } %>
+                                <% }) %>
+                            </select>
                         </div>
         
                        <div class="formBoxes">
                             <div class="categoria">
                                 <label for="categoria">Categoría</label>
-                                <select name="categoria" id="categoria">
-
-                                    <% categoryArray.forEach(category => { %>
-                                        <% if (category == product.categoria) { %>
-                                            <option value="<%= product.categoria %>" selected> <%= product.categoria %> </option>
+                                <select name="categoryId" id="categoria">
+                                    <% productCategories.forEach(category => { %>
+                                        <% if (category.id == product.categoryId) { %>
+                                            <option value="<%= product.categoryId %>" selected> <%= product.category.name %> </option>
                                         <% }else{ %>
-                                            <option value="<%= category %>"> <%= category %> </option>
+                                            <option value="<%= category.id %>"> <%= category.name %> </option>
                                        <% } %>
                                     <% }) %> 
                                 </select>
@@ -60,22 +80,22 @@
     
                                 <div class="checkboxBox">
                                     <label for="azul">Azul</label>
-                                    <input type="checkbox" id="azul" name="color" value="azul" <%= product.color.find(color => color == "azul") ? 'checked' : '' %> >
+                                    <input type="checkbox" id="azul" name="colorId" value="azul" <%= product.colorId == 1 ? 'checked' : '' %> >
                                 </div>
                                 
                                 <div class="checkboxBox">
                                     <label for="rojo">Rojo</label>
-                                    <input type="checkbox" id="rojo" name="color" value="rojo" <%= product.color.find(color => color == "rojo") ? 'checked' : '' %>>
+                                    <input type="checkbox" id="rojo" name="colorId" value="rojo" <%= product.colorId == 2 ? 'checked' : '' %>>
                                 </div>
     
                                 <div class="checkboxBox">
                                     <label for="negro">Negro</label>
-                                    <input type="checkbox" id="negro" name="color" value="negro" <%= product.color.find(color => color == "negro") ? 'checked' : '' %>>
+                                    <input type="checkbox" id="negro" name="colorId" value="negro" <%= product.colorId == 3 ? 'checked' : '' %>>
                                 </div>
     
                                 <div class="checkboxBox">
                                     <label for="Verde">Verde</label>
-                                    <input type="checkbox" id="verde" name="color" value="verde" <%= product.color.find(color => color == "verde") ? 'checked' : '' %>>
+                                    <input type="checkbox" id="verde" name="colorId" value="verde" <%= product.colorId == 4 ? 'checked' : '' %>>
                                 </div>
                             </div>
             
@@ -84,46 +104,46 @@
     
                                 <div class="checkboxBox">
                                     <label for="XL">XL</label>
-                                    <input type="checkbox" id="XL" name="talle" value="XL" <%= product.talle.find(talle => talle == "XL") ? 'checked' : '' %>>
+                                    <input type="checkbox" id="XL" name="sizeId" value="XL" <%= product.sizeId == 1 ? 'checked' : '' %>>
                                 </div>
                                 
                                 <div class="checkboxBox">
                                     <label for="L">L</label>
-                                    <input type="checkbox" id="L" name="talle" value="L" <%= product.talle.find(talle => talle == "L") ? 'checked' : '' %>>
+                                    <input type="checkbox" id="L" name="sizeId" value="L" <%= product.sizeId == 2 ? 'checked' : '' %>>
                                 </div>
     
                                 <div class="checkboxBox">
                                     <label for="M">M</label>
-                                    <input type="checkbox" id="M" name="talle" value="M" <%= product.talle.find(talle => talle == "M") ? 'checked' : '' %>>
+                                    <input type="checkbox" id="M" name="sizeId" value="M" <%= product.sizeId == 3 ? 'checked' : '' %>>
                                 </div>
     
                                 <div class="checkboxBox">
                                     <label for="S">S</label>
-                                    <input type="checkbox" id="S" name="talle" value="S" <%= product.talle.find(talle => talle == "S") ? 'checked' : '' %>>
+                                    <input type="checkbox" id="S" name="sizeId" value="S" <%= product.sizeId == 4 ? 'checked' : '' %>>
                                 </div>
                             </div>
         
                        <div class="priceBoxes">
                             <div class="precio">
                                 <label for="precio">Precio</label>
-                                <input type="number" name="precio" id="precio" value="<%= product.precio %>">
+                                <input type="number" name="price" id="precio" value="<%= product.price %>">
                             </div>
             
                             <div class="descuento">
                                 <label for="descuento">Descuento</label>
-                                <input type="number" name="descuento" id="descuento" value="<%= product.descuento %>">
+                                <input type="number" name="discount" id="descuento" value="<%= product.discount %>">
                             </div>
                        </div>
     
                        <div class="descripcion">
                             <label for="descripcion">Descripción</label>
-                            <input type="text" name="descripcion" id="descripcion" value="<%= product.descripcion %>">
+                            <input type="text" name="description" id="descripcion" value="<%= product.description %>">
                         </div>
     
                         <div class="imagen">
                             <label for="imagen">Imagen</label>
-                            <input type="file" name="imagen" id="imagen" accept=".jpg">
-                            <input type="hidden" name="oldImagen" value="<%= product.imagen %>">
+                            <input type="file" name="image" id="imagen" accept=".jpg">
+                            <input type="hidden" name="oldImagen" value="<%= productImages.name %>">
                         </div>
 
                         <div class="radios">
@@ -133,12 +153,12 @@
     
                                 <div class="radioContainer">
                                     <label for="true">SI</label>
-                                    <input type="radio" name="oferta" id="true" value="true" <%= product.oferta == true ? 'checked' : '' %> >
+                                    <input type="radio" name="offer" id="true" value="true" <%= product.offer == 1 ? 'checked' : '' %> >
                                 </div>
         
                                 <div class="radioContainer">
                                     <label for="false">NO</label>
-                                    <input type="radio" name="oferta" id="false" value="false" <%= product.oferta == false ? 'checked' : '' %>>
+                                    <input type="radio" name="offer" id="false" value="false" <%= product.offer == 2 ? 'checked' : '' %>>
                                 </div>
                             </div>
     
@@ -147,15 +167,25 @@
                                 
                                 <div class="radioContainer">
                                     <label for="true">SI</label>
-                                    <input type="radio" name="temporada" id="true" value="true" <%= product.temporada == true ? 'checked' : '' %>>
+                                    <input type="radio" name="season" id="true" value="true" <%= product.season == 1 ? 'checked' : '' %>>
                                 </div>
         
                                 <div class="radioContainer">
                                     <label for="false">NO</label>
-                                    <input type="radio" name="temporada" id="false" value="false" <%= product.temporada == false ? 'checked' : '' %>>
+                                    <input type="radio" name="season" id="false" value="false" <%= product.season == 2 ? 'checked' : '' %>>
                                 </div>
                             </div>
     
+                        </div>
+
+                        <div class="stock">
+                            <label for="stockMin">StockMin</label>
+                            <input type="number" name="stockMin" id="stockMin" value="<%= product.stockMin %>">
+                        </div>
+    
+                        <div class="stock">
+                            <label for="stockMax">StockMax</label>
+                            <input type="number" name="stockMax" id="stockMax" value="<%= product.stockMax %>">
                         </div>
                         
                         <div class="botones">

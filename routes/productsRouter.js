@@ -18,15 +18,19 @@ router.get('/', productController.readAll);   /* LISTADO DE PRODUCTOS RENDERIZA 
 
 router.get('/create', productController.createProduct);  /* FORMULARIO DE CARGA */
 
+router.get('/search', productController.searchProduct);  /* BUSCA UN PRODUCTO  */
+
 router.get('/:id', productController.readProduct);    /* LEER PRODUCTO SEGUN ID */
 
-router.post('/', upload.single('imagen'), productController.recieveForm);  /* RECIBE DATOS DEL FORMULARIO DE CREACION */
+router.post('/', upload.single('image'), productController.recieveForm);  /* RECIBE DATOS DEL FORMULARIO DE CREACION */
 
 router.get('/:id/edit', productController.modifyProduct);  /* MODIFICA PRODUCTO SEGUN ID */
 
-router.put('/:id', upload.single('imagen'), productController.modifyForm);   /* RECIBE FORMULARIO DE EDICION */
+router.put('/:id', upload.single('image'), productController.modifyForm);   /* RECIBE FORMULARIO DE EDICION */
 
 router.delete('/:id', productController.deleteProduct);  /* ELIMINA PRODUCTO  */
+
+
 
 
 

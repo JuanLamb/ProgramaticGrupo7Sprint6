@@ -1,9 +1,9 @@
 <div class="catalogProduct">
-    <a href="/products/<%= product.id %>"><img src="/images/productos/<%= product.imagen %>" alt="" class="img-prod"></a>
+    <a href="/products/<%= product.id %>"><img src="/images/productos/<%= product.image.name %>" alt="" class="img-prod"></a>
     <div class="articleInfo">
         <i class="heart"></i>
-        <h4 class="ProductName"><%= product.nombre %></h4>
-        <p class="productBrand"><%= product.marca %></p>
-        <p class="productPrice">$<%= product.precio %></p>
+        <h4 class="ProductName"><%= product.name %></h4>
+        <p class="productBrand"><%= product.brand.name %></p>
+        <p class="productPrice">$<%= product.price %></p>
     </div>
 </div>

@@ -1,120 +1,155 @@
-const model = require('../model/model');
+const db = require('../src/database/models');
+const sequelize = db.sequelize;
+const { Op } = require("sequelize");
 
-const productModel = model('datosProductos');
-
+const Products = db.Product;
+const Images = db.Image;
+const Categories = db.Category;
+const Brands = db.Brand;
+const Genders = db.Gender;
 
 let productController = {
 
-    readAll: (req, res) => {
-    
-        const products = productModel.all();
+    readAll: async (req, res) => {
+        try{
+            let products = await Products.findAll({
+                include: ["brand", "gender", "color", "size", "category", "image"]
+            });
+            res.render('products/productCatalog', { products });
+        }catch(error){
+            console.log(error);
+            return res.status(500);
+        }
 
-        res.render('products/productCatalog', { products });
     },
 
-    readProduct: (req, res) => {
+    readProduct: async (req, res) => {
+        try {
+            const product = await Products.findByPk(req.params.id);
+            
+            if (product) {
+                res.render('products/productDetail', { product });
+            } else {
+                res.render('error404');
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
 
-        const product = productModel.find(req.params.id);
-
-        const categoryProducts = productModel.findAllByField("categoria", product.categoria);
-
+        // const categoryProducts = productModel.findAllByField("categoria", product.categoria);
 /*      Filtraría los productos pero se rompe cuando solamente existe uno de una categoría.
-
         const filteredProducts = productModel.findAllByField("categoria", product.categoria);
         let categoryProducts = [];
         for (let i = 0; i < 4; i++) {
             categoryProducts.push(filteredProducts[i]);
-        }
-        
+        }  
 */
-
-           if (product) {
-               res.render('products/productDetail', { product, categoryProducts });
-           } else {
-               res.render('error404');
-           }
-       },
+    },
 
     createProduct: (req, res) => {
         res.render('user/productForm');
     },
 
-    recieveForm: (req, res) => {
+    recieveForm: async (req, res) => {
     
         const product = req.body;
 
-        product.imagen = req.file ? req.file.filename : '';
+        product.image = req.file ? req.file.filename : '';
 
-        // Pregunta si en el oferta y temporada del body vienen strings "true", si es true, lo pasa a booleano, si es false lo pasa a booleano y lo cambia a false
-        product.oferta = req.body.oferta == "true" ? true : false;
-        product.temporada = req.body.temporada == "true" ? true : false;
+        try {
+            let productoCreado = await Products.create(product);
+            console.log("se creo el producto");
+    
+            let productImage = await Images.create({
+                name: product.image, 
+                productId: productoCreado.id
+            });
+            res.redirect('/')
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
 
-        // pregunta si vienen datos de color y talle en el body, en caso de false devuelve un  array vacio
-        product.color = product.color ? product.color : [];
-        product.talle = product.talle ? product.talle : [];
+    },
 
-        // Convierte en array los datos de color y talle en el caso que venga 1 solo dato en los checkboxes del body
-        if (typeof product.color === 'string') {
-            product.color = [product.color];
-        };
-        
-        if (typeof product.talle === 'string') {
-            product.talle = [product.talle];
-        };
+    modifyProduct: async (req, res) => {
+        try {
+            const product = await Products.findOne({
+                where: {id : req.params.id}, 
+                include: ["brand", "gender", "color", "size", "category", "image"]
+            });
+            const productCategories = await Categories.findAll();
+            const productBrands = await Brands.findAll();
+            const productGenders = await Genders.findAll();
+            const productImages = await Images.findOne({where: {productId: product.id}});
+            res.render('user/productEdit', { product, productCategories, productBrands, productGenders, productImages });
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
+    },
 
-        productModel.create(product);
-   
+    modifyForm: async (req, res) => {
+        try {
+            let product = req.body;
+            product.image = req.file ? req.file.filename : req.body.oldImagen;
+            if (req.body.image === undefined) {
+                product.image = product.oldImagen
+            };
+            delete product.oldImagen;
+            let updatedProduct = await Products.update({ 
+                name: product.name,
+                price: product.price,
+                stockMin: product.stockMin,
+                stockMax: product.stockMax,
+                discount: product.discount,
+                description: product.description,
+                offer: product.offer,
+                season: product.season,
+                brandId: product.brandId,
+                colorId: product.colorId,
+                sizeId: product.sizeId,
+                categoryId: product.categoryId,
+                genderId: product.genderId 
+            },
+                {where: { id: req.params.id }});
+
+            let productImage = await Images.update({
+                name: product.image
+            },
+                {where: {productId: req.params.id}});
+
+            res.redirect('/products/' + req.params.id);
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
+    },
+
+    deleteProduct: async (req, res) => {
+
+        let deletedProduct = await Products.destroy({where: {id : req.params.id}});
+      
         res.redirect('/')
     },
 
-    modifyProduct: (req, res) => {
-        const product = productModel.find(req.params.id);
-        const categoryArray = ["Escalada", "Camperas", "Calzado", "Mochilas"];
-        res.render('user/productEdit', { product, categoryArray });
-    },
-
-    modifyForm: (req, res) => {
-  
-        let  product = req.body;
-      
-        product.id = req.params.id;
-
-        product.imagen = req.file ? req.file.filename : req.body.oldImagen;
-        
-        if (req.body.imagen === undefined) {
-            product.imagen = product.oldImagen
-        };
-        
-        delete product.oldImagen;
-
-        // Pregunta si en el oferta y temporada del body vienen strings "true", si es true, lo pasa a booleano, si es false lo pasa a booleano y lo cambia a false
-        product.oferta = req.body.oferta == "true" ? true : false;
-        product.temporada = req.body.temporada == "true" ? true : false;
-
-        // pregunta si vienen datos de color y talle en el body, en caso de false devuelve un  array vacio
-        product.color = product.color ? product.color : [];
-        product.talle = product.talle ? product.talle : [];
-
-        // Convierte en array los datos de color y talle en el caso que venga 1 solo dato en los checkboxes del body
-        if (typeof product.color === 'string') {
-            product.color = [product.color];
-        };
-
-        if (typeof product.talle === 'string') {
-            product.talle = [product.talle];
-        };
-
-        productModel.update(product);
-          
-        res.redirect('/products/' + product.id);
-    },
-
-    deleteProduct: (req, res) => {
-
-        productModel.delete(req.params.id);
-      
-        res.redirect('/')
-    },
+    searchProduct: async (req, res) => {
+        try {
+            let { search } = req.query;
+            search = search.toLowerCase();
+            let products = await Products.findAll({
+                where: {
+                    name:  {[Op.like]: `%${search}%`}
+                },
+                include: ["brand", "gender", "color", "size", "category", "image"]
+            })
+             res.render('products/productCatalog', { products })
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
+    }
 };
 
 module.exports = productController;
