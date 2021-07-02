@@ -38,10 +38,10 @@
                                 placeholder="Nombre" 
                                 name="firstName"
                                 id="nombre-apellido" 
-                                class= "<%= locals.errors && errors.nombreApellido ? 'is-invalid' : null %>"
-                                value="<%= locals.oldData ? oldData.nombreApellido : null %>" >
-                            <% if (locals.errors && errors.nombreApellido) { %>
-                                <p class="inputError"><%= errors.nombreApellido.msg  %> </p>  
+                                class= "<%= locals.errors && errors.firstName ? 'is-invalid' : null %>"
+                                value="<%= locals.oldData ? oldData.firstName : null %>" >
+                            <% if (locals.errors && errors.firstName) { %>
+                                <p class="inputError"><%= errors.firstName.msg  %> </p>  
                             <% } %>
                         </div>
                         <div class="registerInput">
@@ -49,11 +49,11 @@
                                 type="text" 
                                 placeholder="Apellido" 
                                 name="lastName"
-                                id="nombre-apellido" 
-                                class= "<%= locals.errors && errors.nombreApellido ? 'is-invalid' : null %>"
-                                value="<%= locals.oldData ? oldData.nombreApellido : null %>" >
-                            <% if (locals.errors && errors.nombreApellido) { %>
-                                <p class="inputError"><%= errors.nombreApellido.msg  %> </p>  
+                                id="apellido" 
+                                class= "<%= locals.errors && errors.lastName ? 'is-invalid' : null %>"
+                                value="<%= locals.oldData ? oldData.lastName : null %>" >
+                            <% if (locals.errors && errors.lastName) { %>
+                                <p class="inputError"><%= errors.lastName.msg  %> </p>  
                             <% } %>
                         </div>
 
@@ -64,10 +64,10 @@
                                 name="username" 
                                 id="usuario" 
                                 minlength="5"
-                                class= "<%= locals.errors && errors.usuario ? 'is-invalid' : null %>"
-                                value="<%= locals.oldData ? oldData.usuario : null %>">
-                            <% if (locals.errors && errors.usuario) { %>
-                                <p class="inputError"><%= errors.usuario.msg  %> </p>  
+                                class= "<%= locals.errors && errors.username ? 'is-invalid' : null %>"
+                                value="<%= locals.oldData ? oldData.username : null %>">
+                            <% if (locals.errors && errors.username) { %>
+                                <p class="inputError"><%= errors.username.msg  %> </p>  
                             <% } %>
                         </div>
 
@@ -89,12 +89,12 @@
                         <div class="registerInput">
                             <input 
                                 type="date" 
-                                name="nacimiento" 
+                                name="birthday" 
                                 id="nacimiento" 
-                                class= "<%= locals.errors && errors.nacimiento ? 'is-invalid' : null %>"
-                                value="<%= locals.oldData ? oldData.nacimiento : null %>">
-                            <% if (locals.errors && errors.nacimiento) { %>
-                                <p class="inputError"><%= errors.nacimiento.msg  %> </p>  
+                                class= "<%= locals.errors && errors.birthday ? 'is-invalid' : null %>"
+                                value="<%= locals.oldData ? oldData.birthday : null %>">
+                            <% if (locals.errors && errors.birthday) { %>
+                                <p class="inputError"><%= errors.birthday.msg  %> </p>  
                             <% } %>
                         </div>
 
@@ -104,10 +104,10 @@
                                 name="street" 
                                 id="Calle" 
                                 placeholder="Calle" 
-                                class= "<%= locals.errors && errors.domicilio ? 'is-invalid' : null %>"
-                                value="<%= locals.oldData ? oldData.domicilio : null %>">
-                            <% if (locals.errors && errors.domicilio) { %>
-                                <p class="inputError"><%= errors.domicilio.msg  %> </p>  
+                                class= "<%= locals.errors && errors.street ? 'is-invalid' : null %>"
+                                value="<%= locals.oldData ? oldData.street : null %>">
+                            <% if (locals.errors && errors.street) { %>
+                                <p class="inputError"><%= errors.street.msg  %> </p>  
                             <% } %>
                         </div>
 
@@ -117,10 +117,10 @@
                                 name="number" 
                                 id="domicilio" 
                                 placeholder="numero" 
-                                class= "<%= locals.errors && errors.domicilio ? 'is-invalid' : null %>"
-                                value="<%= locals.oldData ? oldData.domicilio : null %>">
-                            <% if (locals.errors && errors.domicilio) { %>
-                                <p class="inputError"><%= errors.domicilio.msg  %> </p>  
+                                class= "<%= locals.errors && errors.number ? 'is-invalid' : null %>"
+                                value="<%= locals.oldData ? oldData.number : null %>">
+                            <% if (locals.errors && errors.number) { %>
+                                <p class="inputError"><%= errors.number.msg  %> </p>  
                             <% } %>
                         </div>
 

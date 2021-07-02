@@ -31,27 +31,27 @@ let userController = {
 
     recieveFormRegister: async (req, res) =>{
         try {
-            // const resultValidation = validationResult(req);
-            // let newUserEmail = req.body.email;
-            // let userInDb = await Users.findOne({where: {email: newUserEmail}}); 
+            const resultValidation = validationResult(req);
+            let newUserEmail = req.body.email;
+            let userInDb = await Users.findOne({where: {email: newUserEmail}}); 
 
-            // if (resultValidation.errors.length > 0) {
-            //     return res.render('user/register', {
-            //         errors: resultValidation.mapped(),
-            //         oldData: req.body
-            //     });
-            // }
+            if (resultValidation.errors.length > 0) {
+                return res.render('user/register', {
+                    errors: resultValidation.mapped(),
+                    oldData: req.body
+                });
+            }
 
-            // if (userInDb) {
-            //     return res.render('user/register', {
-            //         errors: {
-            //             email: {
-            //                 msg: 'Este email ya esta registrado'
-            //             }
-            //         },
-            //         oldData: req.body
-            //     });
-            // }
+            if (userInDb) {
+                return res.render('user/register', {
+                    errors: {
+                        email: {
+                            msg: 'Este email ya esta registrado'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }
             let body = req.body
             body.avatar = req.file ? req.file.filename : '';
 

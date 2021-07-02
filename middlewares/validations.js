@@ -2,17 +2,22 @@ const { body } = require('express-validator');
 const path = require('path');
 
 const validations = [
-    body('nombreApellido')
-        .notEmpty().withMessage('Debes completar tu nombre y apellido').bail()
+    body('firstName')
+        .notEmpty().withMessage('Debes completar tu nombre').bail()
         .isLength({ min: 3 }),
-    body('usuario')
+    body('lastName')
+        .notEmpty().withMessage('Debes completar tu apellido').bail()
+        .isLength({ min: 3 }),
+    body('username')
         .notEmpty().withMessage('Debes completar tu nombre de usuario'),
     body('email')
         .notEmpty().withMessage('Debes completar tu e-mail').bail()
         .isEmail().withMessage('Debes escribir un correo valido'),
-    body('nacimiento')
+    body('birthday')
         .notEmpty().withMessage('Debes completar tu fecha de nacimiento'),
-    body('domicilio')
+    body('street')
+        .notEmpty().withMessage('Debes completar tu domicilio'),
+    body('number')
         .notEmpty().withMessage('Debes completar tu domicilio'),
     body('password')
         .notEmpty().withMessage('Debes completar tu contraseña').bail()

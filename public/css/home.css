@@ -168,10 +168,9 @@ html {
 
 .home-banner {
     padding-bottom: 30px;
-    background-color: #fff;
+    background-color: transparent;
     width: 100vw;
     position: relative;
-    
 }
 
 .home-banner .bannerImg {
@@ -232,13 +231,12 @@ html {
 @media (min-width: 361px) {
     .home-banner .bannerImg {
         overflow: hidden;
-        height: 40vh;
     }
 }
 
 @media (min-width: 769px) {
     .home-banner .bannerImg {
-        height: 60vh;
+        height: 49vh;
     }
 
     .home-banner .promo h2 {
@@ -248,7 +246,7 @@ html {
 
 @media (min-width: 1200px) {
     .home-banner .bannerImg {
-        height: 80vh;
+        height: 77vh;
     }
 
     .home-banner .promo h2 {
@@ -300,11 +298,12 @@ html {
         margin-top: 10px;
         margin-bottom: 10px;
         max-width: 300px;
-        border-radius: 0 !important;
+        border-radius: 5px !important;
     }
     
     .product-card a {
         height: 70%;
+        border-radius: inherit;
     }
     
     .product-card img {
@@ -312,15 +311,16 @@ html {
         width: 100%;
         background-position: center;
         background-size: cover;
+        border-radius: inherit;
     }
 
     .articleInfo{
-        border-top: solid #3a6351 1px;
         height: 30%;
         width: 100%;
         font-size: 16px;
-        background-color: #fff;
+        background-color: #f2edd7;
         padding: 5px;
+        border-radius: inherit;
     }
 
     @media (max-width: 768px) {
@@ -382,21 +382,31 @@ html {
     display: flex;
     flex-flow: column wrap;
     max-width: 300px;
-    border: solid 1px #000;
-    border-radius: 0 !important;
+    box-shadow: 0px 0px 10px 0px rgb(100 100 100);
+    border-radius: 5px;
     margin: 10px;
     width: 140px;
+    height: 208px;
 }
 
-.catalogProduct a {
+.imgContainer {
     height: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    border-radius: inherit;
+}
+
+.imgContainer a {
+    border-radius: inherit;
 }
 
 .catalogProduct img {
-    height: 100%;
     width: 100%;
     background-position: center;
     background-size: cover;
+    border-radius: inherit;
 }
 
 .catalog-main .filters {
@@ -444,6 +454,7 @@ html {
 
     .catalogProduct {
         width: 175px;
+        height: 243px;
     }
 
     .productsSection {
@@ -454,6 +465,7 @@ html {
 @media (min-width: 1200px) {
     .catalogProduct {
         width: 300px;
+        height: 368px;
     }
 }
 /* ===================== 404 ========================== */
@@ -541,7 +553,7 @@ html {
 /* =================== FOOTER ========================= */
 
 .footer-home {
-    border-top: solid 5px #e48257;
+    border-top: solid 5px #3a6351;
     background-color: #f2edd7;
     height: 30vh;
 }
