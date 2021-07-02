@@ -52,12 +52,11 @@ let productController = {
     },
 
     recieveForm: async (req, res) => {
-    
-        const product = req.body;
-
-        product.image = req.file ? req.file.filename : '';
-
         try {
+            const product = req.body;
+
+            product.image = req.file ? req.file.filename : '';
+
             let productoCreado = await Products.create(product);
             console.log("se creo el producto");
     

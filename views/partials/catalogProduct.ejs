@@ -1,5 +1,5 @@
 <div class="catalogProduct">
-    <a href="/products/<%= product.id %>"><img src="/images/productos/<%= product.image.name %>" alt="" class="img-prod"></a>
+    <a href="/products/<%= product.id %>"><img src="/images/productos/<%= product.image[0].name %>" alt="" class="img-prod"></a>
     <div class="articleInfo">
         <i class="heart"></i>
         <h4 class="ProductName"><%= product.name %></h4>

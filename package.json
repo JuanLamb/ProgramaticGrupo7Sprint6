@@ -4,7 +4,8 @@
   "description": "Grupo 9 Programatic",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "nodemon app.js"
   },
   "repository": {
     "type": "git",
