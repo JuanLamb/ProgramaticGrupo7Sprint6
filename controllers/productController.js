@@ -148,6 +148,36 @@ let productController = {
             console.log(error);
             return res.status(500);
         }
+    },
+
+    searchCuerdas: async (req, res) => {
+        try {
+            let products = await Products.findAll({
+                where: {
+                    name:  {[Op.like]: `%cuerda%`}
+                },
+                include: ["brand", "gender", "color", "size", "category", "image"]
+            })
+             res.render('products/productCatalog', { products })
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
+    },
+
+    searchArneses: async (req, res) => {
+        try {
+            let products = await Products.findAll({
+                where: {
+                    name:  {[Op.like]: `%arnes%`}
+                },
+                include: ["brand", "gender", "color", "size", "category", "image"]
+            })
+             res.render('products/productCatalog', { products })
+        } catch (error) {
+            console.log(error);
+            return res.status(500);
+        }
     }
 };
 

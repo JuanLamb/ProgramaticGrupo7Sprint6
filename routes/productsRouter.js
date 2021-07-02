@@ -20,6 +20,10 @@ router.get('/create', productController.createProduct);  /* FORMULARIO DE CARGA 
 
 router.get('/search', productController.searchProduct);  /* BUSCA UN PRODUCTO  */
 
+router.get('/cuerdas', productController.searchCuerdas);  /* BUSCA UN PRODUCTO  */
+
+router.get('/arneses', productController.searchArneses);  /* BUSCA UN PRODUCTO  */
+
 router.get('/:id', productController.readProduct);    /* LEER PRODUCTO SEGUN ID */
 
 router.post('/', upload.single('image'), productController.recieveForm);  /* RECIBE DATOS DEL FORMULARIO DE CREACION */
