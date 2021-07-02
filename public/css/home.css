@@ -307,7 +307,6 @@ html {
     }
     
     .product-card img {
-        height: 100%;
         width: 100%;
         background-position: center;
         background-size: cover;
@@ -400,6 +399,10 @@ html {
 
 .imgContainer a {
     border-radius: inherit;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .catalogProduct img {
