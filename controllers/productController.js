@@ -150,7 +150,7 @@ let productController = {
         }
     },
 
-    searchNewProduct: async (req, res) => {
+    filterCategories: async (req, res) => {
         try {
             let products = [];
             if (req.params.category === "cuerdas" || req.params.category === "arneses" ) {
