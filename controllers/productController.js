@@ -150,15 +150,41 @@ let productController = {
         }
     },
 
-    searchCuerdas: async (req, res) => {
+    searchNewProduct: async (req, res) => {
         try {
-            let products = await Products.findAll({
+            let products = [];
+            if (req.params.category === "cuerdas" || req.params.category === "arneses" ) {
+
+                let filter = req.params.category === "cuerdas" ? "cuerda" : "arnes";
+                products = await Products.findAll({
                 where: {
-                    name:  {[Op.like]: `%cuerda%`}
+                    name:  {[Op.like]: `%${filter}%`}
                 },
                 include: ["brand", "gender", "color", "size", "category", "image"]
-            })
-             res.render('products/productCatalog', { products })
+            });
+            } else {
+                let filter = 0;
+                switch (req.params.category) {
+                    case "escalada":
+                        filter = 1;
+                        break;
+                    case "camperas":
+                        filter = 2;
+                        break;
+                    case "calzado":
+                        filter = 3;
+                        break;
+                    case "mochilas":
+                        filter = 4;
+                }
+                products = await Products.findAll({
+                where: {
+                    categoryId: filter
+                },
+                include: ["brand", "gender", "color", "size", "category", "image"]
+            })};
+            
+                res.render('products/productCatalog', { products })
         } catch (error) {
             console.log(error);
             return res.status(500);

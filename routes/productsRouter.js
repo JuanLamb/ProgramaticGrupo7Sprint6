@@ -20,9 +20,7 @@ router.get('/create', productController.createProduct);  /* FORMULARIO DE CARGA 
 
 router.get('/search', productController.searchProduct);  /* BUSCA UN PRODUCTO  */
 
-router.get('/cuerdas', productController.searchCuerdas);  /* BUSCA UN PRODUCTO  */
-
-router.get('/arneses', productController.searchArneses);  /* BUSCA UN PRODUCTO  */
+router.get('/productCategories/:category', productController.searchNewProduct); /* FILTRA CUERDAS/ARNESES */
 
 router.get('/:id', productController.readProduct);    /* LEER PRODUCTO SEGUN ID */
 
