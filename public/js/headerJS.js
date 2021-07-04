@@ -8,7 +8,7 @@ window.onload = () => {
     searchContainer.setAttribute("class", "searchContainer");
 
     const searchForm = document.createElement("form");
-    searchForm.setAttribute("class", "searchForm");
+    searchForm.classList.add("searchForm");
     searchForm.setAttribute("action", "/products/search");
     searchForm.setAttribute("method", "GET");
 
