@@ -1,52 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/login.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <title>Login Botacura</title>
-</head>
-
 <%- include('../partials/head') %>
 
-    <body>
+<body>
+    
+    <%- include('../partials/header') %>
 
-        <%- include('../partials/header') %>
-
-            <main>
-                <div class="userProfileContainer" style="margin-top: 40px;">
-                    <div class="userProfileData">
-                        <h2>Hola <%= user.nombreApellido %></h2>
-                        <img src="/images/users/<%= user.avatar %>">
-                        <br>
-                        <br>
-                        <div class="userProfileEmail"><%= user.email %> </div>
-                    </div>
-                    <div class="middle">
-                        <div class="text">Cambiar Foto</div>
-                      </div>
-
-                    <div class="editProfileButton">
-                        <button>Editar Perfil</button>
-                    </div>
+    <main class="profileMain">
+        <section class="profileHead">
+            <div class="profileHeadContainer">
+                <h1 class="profileTitle">Hola <%= user.username %></h1>
+            </div>
+            <div class="profileHeadContainer">
+                <img src="/images/users/<%= user.avatar.name %>" alt="avatar" class="profileAvatar">
+            </div>
+        </section>
+        <section class="profileBody">
+            <article class="profileDetails">
+                <h2 class="detailsTitle">Detalles</h2>
+                <div class="profileFormContainer">
+                    <form method="POST" action='/editUser?_method=PUT' class="profileForm" enctype="multipart/form-data">
+                        <div class="profileNames">
+                            <p class="profileDetail"><%= user.firstName %></p>
+                            <p class="profileDetail"><%= user.lastName %></p>
+                        </div>
+                        <p class="profileDetail"><%= user.email %></p>
+                        <input type="text" name="username" class="profileInput profileDetail" value="<%= user.username %>">
+                        <label for="address" class="inputLabel">Tu direccion de envío</label>
+                        <input type="text" name="street" class="profileInput profileDetail" value="<%= user.address.street %>" id="address">
+                        <input type="text" name="number" class="profileInput profileDetail" value="<%= user.address.number %>">
+                        <label for="avatar" class="inputLabel">Editar avatar</label>
+                        <input type="file" name="avatar" id="avatar" accept=".jpg" class="profileDetail" id="avatar">
+                        <input type="hidden" name="oldAvatar" value="<%= user.avatar.name %>">
+                        <input type="submit" class="profileDetail">
+                    </form>
                 </div>
-                <div class="favUserProducts">
-                    <h3>Estos son algunos de tus productos favoritos</h3>
-                </div>
-            </main>
+            </article>
+            <article class="profileOrders">
+                <h2 class="ordersTitle">Tus compras</h2>
+            </article>
+        </section>
+    </main>
+    
+    <%- include('../partials/footer') %>
 
-
-            <%- include('../partials/footer') %>
-
-    </body>
-
+</body>
 </html>

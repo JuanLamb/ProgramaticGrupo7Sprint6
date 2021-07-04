@@ -4,6 +4,7 @@ const { validationResult } = require('express-validator');
 const db = require('../src/database/models');
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
+const session = require('express-session');
 
 const Users = db.User;
 const Avatars = db.Avatar;
@@ -87,7 +88,10 @@ let userController = {
 
     recieveFormLogin: async (req, res) =>{ 
         let loginEmail = req.body.email;
-        let userToLogin = await Users.findOne({where: {email: loginEmail}});
+        let userToLogin = await Users.findOne({
+            where: {email: loginEmail},
+            include: ["avatar", "address"]
+        })
 
         if (!req.body.email && !req.body.password) {
             return res.render('user/login', {
@@ -133,31 +137,46 @@ let userController = {
 
     modifyForm: async (req, res) =>{
         try {
-            let body = req.body
-            body.avatar = req.file ? req.file.filename : '';
-    
-            let user = {id: 1,
-                        avatarId: 2,
-                        addressId: 2,};
+            let updatedUser = req.body
+            updatedUser.avatar = req.file ? req.file.filename : req.body.oldAvatar;
+            if (req.body.avatar === undefined) {
+                updatedUser.avatar = updatedUser.oldAvatar
+            };
 
-            let avatarToUpdate = {name: body.avatar};
-            let avatarUpdated = await Avatars.update(avatarToUpdate, {where: { id: user.avatarId }});
-    
+            // Le doy a updatedUser IDs de avatar, address y user para actualizar las tablas correspondientes en DB
+            updatedUser.avatarId = req.session.userLogged.avatarId
+            updatedUser.addressId = req.session.userLogged.addressId
+            updatedUser.id = req.session.userLogged.id
+            console.log(updatedUser);
+
+            // Actualizo tabla avatars
+            let avatarToUpdate = {name: updatedUser.avatar};
+            let avatarUpdated = await Avatars.update(avatarToUpdate, {where: { id: updatedUser.avatarId }});
+
+            // Actualizo tabla addresses
             let addressToUpdate = {
                 street: req.body.street,
                 number: req.body.number
             };
     
-            let addressUpdated = await Addresses.update(addressToUpdate, {where: { id: user.addressId }});
+            let addressUpdated = await Addresses.update(addressToUpdate, {where: { id: updatedUser.addressId }});
 
+            // Actualizo tabla users
             let userToUpdate = {
-                username: body.username,
-                password: bcryptjs.hashSync(req.body.password,10)
+                username: updatedUser.username,
             };
 
-            let userUpdated = await Users.update(userToUpdate, {where: { id: user.id }});
+            let userUpdated = await Users.update(userToUpdate, {where: { id: updatedUser.id }});
 
-            res.json(userUpdated);
+            // Actualizo los datos de userLogged con los nuevos
+
+            req.session.userLogged.username = req.body.username
+            req.session.userLogged.address.street = req.body.street
+            req.session.userLogged.address.number = req.body.number
+            req.session.userLogged.avatar.name = updatedUser.avatar
+            // console.log(req.session.userLogged)
+            
+            return res.redirect('/profile');
 
         } catch (error) {
             console.log(error);

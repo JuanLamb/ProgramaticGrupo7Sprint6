@@ -510,6 +510,43 @@ html {
         height: 368px;
     }
 }
+
+/* ====================== PROFILE ===================== */
+
+.profileMain {
+    padding: 20px;
+}
+
+.profileForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profileDetail {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.inputLabel {
+    font-weight: bold;
+}
+
+.profileHead {
+    display: flex;
+}
+
+.profileNames {
+    display: flex;
+}
+
+.profileNames p {
+    margin-right: 2px;
+}
+
+.profileAvatar {
+    width: 74px;
+}
 /* ===================== 404 ========================== */
 
 .error404 {

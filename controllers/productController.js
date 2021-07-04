@@ -159,14 +159,18 @@ let productController = {
     searchProduct: async (req, res) => {
         try {
             let { search } = req.query;
+            if (search == "") {
+                res.redirect("/")
+            } else {
             search = search.toLowerCase();
             let products = await Products.findAll({
-                where: {
+                 where: {
                     name:  {[Op.like]: `%${search}%`}
                 },
                 include: ["brand", "gender", "color", "size", "category", "image"]
             })
-             res.render('products/productCatalog', { products })
+                res.render('products/productCatalog', { products }) 
+            }
         } catch (error) {
             console.log(error);
             return res.status(500);
