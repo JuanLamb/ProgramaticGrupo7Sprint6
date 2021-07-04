@@ -23,6 +23,10 @@
                 <% if(locals.isLogged){ %>
 
                         <div class="right-navbarItem">
+                            <i class="fas fa-search searchIcon"></i>
+                        </div>
+
+                        <div class="right-navbarItem">
                             <a href="/profile"><i class="fas fa-user-circle"></i></a>
                         </div>
 
@@ -34,7 +38,11 @@
                             <a href="/logout" class="logoutText">Salir</a>
                         </div>
 
-                <% }else { %> 
+                <% }else { %>
+                    
+                    <div class="right-navbarItem">
+                        <i class="fas fa-search searchIcon"></i>
+                    </div> 
 
                     <div class="right-navbarItem">
                         <a href="/login"><i class="fas fa-user-circle"></i></a>
@@ -51,10 +59,11 @@
             </div>
         </nav>
     </section>
-    <section class="searchBox">
+    <!-- <section class="searchBox">
         <form action="/products/search" method="GET" class="searchForm">
             <input type="text" class="searchBar" name="search" placeholder="Busca en nuestra tienda">
             <button class="searchButton" type="submit"><a><i class="fas fa-search"></i></a></button>
         </form>
-    </section>
+    </section> -->
+    <script src="/js/headerJS.js"></script>
 </header>

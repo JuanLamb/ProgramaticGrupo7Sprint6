@@ -74,53 +74,31 @@
                                     <% }) %> 
                                 </select>
                             </div>
-            
-                            <div class="checkboxes">
-                                <h3 class="colorTitle">Colores</h3>
-    
-                                <div class="checkboxBox">
-                                    <label for="azul">Azul</label>
-                                    <input type="checkbox" id="azul" name="colorId" value="azul" <%= product.colorId == 1 ? 'checked' : '' %> >
-                                </div>
-                                
-                                <div class="checkboxBox">
-                                    <label for="rojo">Rojo</label>
-                                    <input type="checkbox" id="rojo" name="colorId" value="rojo" <%= product.colorId == 2 ? 'checked' : '' %>>
-                                </div>
-    
-                                <div class="checkboxBox">
-                                    <label for="negro">Negro</label>
-                                    <input type="checkbox" id="negro" name="colorId" value="negro" <%= product.colorId == 3 ? 'checked' : '' %>>
-                                </div>
-    
-                                <div class="checkboxBox">
-                                    <label for="Verde">Verde</label>
-                                    <input type="checkbox" id="verde" name="colorId" value="verde" <%= product.colorId == 4 ? 'checked' : '' %>>
-                                </div>
+                            
+                            <div class="color">
+                                <label for="color">Categoría</label>
+                                <select name="colorId" id="color">
+                                    <% productColors.forEach(color => { %>
+                                        <% if (color.id == product.colorId) { %>
+                                            <option value="<%= product.colorId %>" selected> <%= product.color.color %> </option>
+                                        <% }else{ %>
+                                            <option value="<%= color.id %>"> <%= color.color %> </option>
+                                       <% } %>
+                                    <% }) %> 
+                                </select>
                             </div>
-            
-                            <div class="checkboxes">
-                                <h3 class="tallesTitle">Talles</h3>
-    
-                                <div class="checkboxBox">
-                                    <label for="XL">XL</label>
-                                    <input type="checkbox" id="XL" name="sizeId" value="XL" <%= product.sizeId == 1 ? 'checked' : '' %>>
-                                </div>
-                                
-                                <div class="checkboxBox">
-                                    <label for="L">L</label>
-                                    <input type="checkbox" id="L" name="sizeId" value="L" <%= product.sizeId == 2 ? 'checked' : '' %>>
-                                </div>
-    
-                                <div class="checkboxBox">
-                                    <label for="M">M</label>
-                                    <input type="checkbox" id="M" name="sizeId" value="M" <%= product.sizeId == 3 ? 'checked' : '' %>>
-                                </div>
-    
-                                <div class="checkboxBox">
-                                    <label for="S">S</label>
-                                    <input type="checkbox" id="S" name="sizeId" value="S" <%= product.sizeId == 4 ? 'checked' : '' %>>
-                                </div>
+
+                            <div class="size">
+                                <label class="tallesTitle" for="size">Categoría</label>
+                                <select name="sizeId" id="size">
+                                    <% productSizes.forEach(size => { %>
+                                        <% if (size.id == product.sizeId) { %>
+                                            <option value="<%= product.sizeId %>" selected> <%= product.size.type %> </option>
+                                        <% }else{ %>
+                                            <option value="<%= size.id %>"> <%= size.type %> </option>
+                                       <% } %>
+                                    <% }) %> 
+                                </select>
                             </div>
         
                        <div class="priceBoxes">
@@ -137,7 +115,7 @@
     
                        <div class="descripcion">
                             <label for="descripcion">Descripción</label>
-                            <input type="text" name="description" id="descripcion" value="<%= product.description %>">
+                            <textarea name="description" id="descripcion" value="<%= product.description %>"></textarea>
                         </div>
     
                         <div class="imagen">
@@ -153,12 +131,12 @@
     
                                 <div class="radioContainer">
                                     <label for="true">SI</label>
-                                    <input type="radio" name="offer" id="true" value="true" <%= product.offer == 1 ? 'checked' : '' %> >
+                                    <input type="radio" name="offer" id="true" value= 1 <%= product.offer == 1 ? 'checked' : '' %> >
                                 </div>
         
                                 <div class="radioContainer">
                                     <label for="false">NO</label>
-                                    <input type="radio" name="offer" id="false" value="false" <%= product.offer == 2 ? 'checked' : '' %>>
+                                    <input type="radio" name="offer" id="false" value= 2 <%= product.offer == 2 ? 'checked' : '' %>>
                                 </div>
                             </div>
     
@@ -167,12 +145,12 @@
                                 
                                 <div class="radioContainer">
                                     <label for="true">SI</label>
-                                    <input type="radio" name="season" id="true" value="true" <%= product.season == 1 ? 'checked' : '' %>>
+                                    <input type="radio" name="season" id="true" value= 1 <%= product.season == 1 ? 'checked' : '' %>>
                                 </div>
         
                                 <div class="radioContainer">
                                     <label for="false">NO</label>
-                                    <input type="radio" name="season" id="false" value="false" <%= product.season == 2 ? 'checked' : '' %>>
+                                    <input type="radio" name="season" id="false" value= 2 <%= product.season == 2 ? 'checked' : '' %>>
                                 </div>
                             </div>
     

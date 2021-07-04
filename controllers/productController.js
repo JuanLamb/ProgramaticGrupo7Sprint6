@@ -7,6 +7,8 @@ const Images = db.Image;
 const Categories = db.Category;
 const Brands = db.Brand;
 const Genders = db.Gender;
+const Colors = db.Color;
+const Sizes = db.Size;
 
 let productController = {
 
@@ -47,8 +49,20 @@ let productController = {
 */
     },
 
-    createProduct: (req, res) => {
-        res.render('user/productForm');
+    createProduct: async (req, res) => {
+        try {
+            let brands = await Brands.findAll();
+            let genders = await Genders.findAll();
+            let colors = await Colors.findAll();
+            let sizes = await Sizes.findAll();
+            let categories = await Categories.findAll();
+
+            res.render('user/productForm', { brands, genders, colors, sizes, categories });
+        } catch (error) {
+            console.log(error);
+            return res.status(500); 
+        }
+
     },
 
     recieveForm: async (req, res) => {
@@ -81,8 +95,17 @@ let productController = {
             const productCategories = await Categories.findAll();
             const productBrands = await Brands.findAll();
             const productGenders = await Genders.findAll();
+            const productColors = await Colors.findAll();
+            const productSizes = await Sizes.findAll();
             const productImages = await Images.findOne({where: {productId: product.id}});
-            res.render('user/productEdit', { product, productCategories, productBrands, productGenders, productImages });
+            res.render('user/productEdit', { 
+                product,
+                productCategories, 
+                productBrands, 
+                productGenders, 
+                productImages, 
+                productColors, 
+                productSizes });
         } catch (error) {
             console.log(error);
             return res.status(500);
