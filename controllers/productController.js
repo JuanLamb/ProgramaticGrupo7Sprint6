@@ -27,8 +27,15 @@ let productController = {
 
     readProduct: async (req, res) => {
         try {
-            const product = await Products.findByPk(req.params.id, {include: ["brand", "gender", "color", "size", "category", "image"]});
-            
+            const product = await Products.findByPk(req.params.id, 
+                {include: ["brand", 
+                           "gender", 
+                           "color", 
+                           "size", 
+                           "category", 
+                           "image"
+                        ]});
+                        console.log(product)
             if (product) {
                 res.render('products/productDetail', { product });
             } else {
