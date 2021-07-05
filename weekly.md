@@ -41,3 +41,19 @@ Se realizo una breve revision de lo realizado por cada integrante y se resaltaro
 24/04/2021
 
 Se realizo una reunion con el objetivo de testear el funcionamiento de la pagina web y buscar errores en el login y registro de usuarios. Se propuso crear una funcionalidad para entregarle un array con productos de determinada caracteristica a la vista de ProductDetail, se armo en conjunto con todos los integrantes del equipo y se aplico en el proyecto.
+
+14/06/2021
+
+Se generó una reunion para avanzar con el armado de la DB de Botacura. Se logró finalizar con el armado de modelos, asociaciones y migraciones.
+
+21/06/2021
+
+Se armó reunion para distribuirnos las tareas restantes del sprint 6
+
+28/06/2021
+
+Se armó una reunión con el objetivo de adaptar el CRUD de Productos previo a una DB de SQL. Se logró generar los metodos necesarios en los controladores de Productos y Home, y se vincularon a sus respectivas rutas. Quedó pendiente resolver la funcionalidad de search.
+
+30/06/2021
+
+Se realizó una reunion para continuar con el CRUD de usuarios. Se finalizó la funcionalidad de searchProduct también. Queda pendiente armar la vista de usuario para vincularla con la funcionalidad de editar usuario.

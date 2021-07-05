@@ -118,3 +118,8 @@ main.productForm {
             text-align: center;
 
         }
+
+        textarea {
+            overflow: auto;
+            resize: vertical;
+        }

@@ -118,4 +118,9 @@ main.productForm {
 
         }
 
+        textarea {
+            overflow: auto;
+            resize: vertical;
+        }
+
         

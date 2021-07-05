@@ -33,19 +33,18 @@
                     <div class="marca">
                         <label for="marca">Marca</label>
                         <select name="brandId" id="marca">
-                            <option value="1">Edelweiss</option>
-                            <option value="2">Black Diamond</option>
-                            <option value="3">Coleman</option>
-                            <option value="4">Salomon</option>
+                            <% brands.forEach(brand => { %>
+                                <option value="<%= brand.id %>"> <%= brand.name %> </option>
+                            <% }) %>
                         </select>
                     </div>
 
                     <div class="genero">
                         <label for="genero">Genero</label>
                         <select name="genderId" id="genero">
-                            <option value="1">Hombre</option>
-                            <option value="2">Mujer</option>
-                            <option value="3">Unisex</option>
+                            <% genders.forEach(gender => { %>
+                                <option value="<%= gender.id %>"> <%= gender.type %> </option>
+                            <% }) %>
                         </select>
                     </div>
     
@@ -53,60 +52,30 @@
                         <div class="categoria">
                             <label for="categoria">Categoría</label>
                             <select name="categoryId" id="categoria">
-                                <option value="1" >Escalada</option>
-                                <option value="2">Camperas</option>
-                                <option value="3">Calzado</option>
-                                <option value="4">Mochilas</option>
+                                <% categories.forEach(category => { %>
+                                    <option value="<%= category.id %>"> <%= category.name %> </option>
+                                <% }) %>
                             </select>
                         </div>
         
-                        <div class="checkboxes">
-                            <h3 class="colorTitle">Colores</h3>
 
-                            <div class="checkboxBox">
-                                <label for="azul">Azul</label>
-                                <input type="checkbox" id="azul" name="colorId" value="1">
-                            </div>
-                            
-                            <div class="checkboxBox">
-                                <label for="rojo">Rojo</label>
-                                <input type="checkbox" id="rojo" name="colorId" value="2">
+                            <div class="color">
+                                <label class="colorTitle" for="color">Colores</label>
+                                <select name="colorId" id="color">
+                                    <% colors.forEach(color => { %>
+                                        <option value="<%= color.id %>"> <%= color.color %> </option>
+                                    <% }) %>
+                                </select>
                             </div>
 
-                            <div class="checkboxBox">
-                                <label for="amarillo">Amarillo</label>
-                                <input type="checkbox" id="amarillo" name="colorId" value="3">
+                            <div class="size">
+                                <label class="tallesTitle" for="size">Talles</label>
+                                <select name="sizeId" id="size">
+                                    <% sizes.forEach(size => { %>
+                                        <option value="<%= size.id %>"> <%= size.type %> </option>
+                                    <% }) %>
+                                </select>
                             </div>
-
-                            <div class="checkboxBox">
-                                <label for="negro">Negro</label>
-                                <input type="checkbox" id="negro" name="colorId" value="4">
-                            </div>
-                        </div>
-        
-                        <div class="checkboxes">
-                            <h3 class="tallesTitle">Talles</h3>
-
-                            <div class="checkboxBox">
-                                <label for="XL">XL</label>
-                                <input type="checkbox" id="XL" name="sizeId" value="1">
-                            </div>
-                            
-                            <div class="checkboxBox">
-                                <label for="L">L</label>
-                                <input type="checkbox" id="L" name="sizeId" value="2">
-                            </div>
-
-                            <div class="checkboxBox">
-                                <label for="M">M</label>
-                                <input type="checkbox" id="M" name="sizeId" value="3">
-                            </div>
-
-                            <div class="checkboxBox">
-                                <label for="S">S</label>
-                                <input type="checkbox" id="S" name="sizeId" value="4">
-                            </div>
-                        </div>
     
                    <div class="priceBoxes">
                         <div class="precio">
@@ -122,7 +91,7 @@
 
                    <div class="descripcion">
                         <label for="descripcion">Descripción</label>
-                        <input type="text" name="description" id="descripcion">
+                        <textarea name="description" id="descripcion"></textarea>
                     </div>
 
                     <div class="imagen">

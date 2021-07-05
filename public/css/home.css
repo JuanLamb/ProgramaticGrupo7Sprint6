@@ -29,13 +29,20 @@ html {
 .header-home{
     background-color: #f2edd7;
     width: 100vw;
-    border-bottom: solid 5px #3a6351;
+    height: 80px;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
 }
 
 .header-home .headerElements {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: solid 5px #3a6351;
+    background-color: #f2edd7;
+    position: relative;
+    z-index: 1;
 }
 
 .header-home img {
@@ -125,6 +132,8 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 60%;
+    max-width: 500px;
 }
 .header-home .searchBar {
     min-width: 200px;
@@ -134,10 +143,39 @@ html {
 }
 
 .header-home .searchButton {
-    background-color: #fff;
+    background-color: transparent;
     border: none;
-    border-radius: 0 5px 5px 0;
     padding: 5px 5px 5px 0;
+    color: white;
+}
+
+.searchContainer {
+    width: 100%;
+    height: 40px;
+    background-color: #393232;
+    opacity: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transform: translateY(-40px);
+    transition: all .3s ease-in-out;
+}
+
+.searchInput {
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1px white;
+    color: white;
+    width: 100%;
+}
+
+.isDisplayed {
+    transform: translateY(0);
+}
+
+.searchButtonText {
+    color: white !important;
 }
 
 @media (min-width: 769px) {
@@ -171,6 +209,7 @@ html {
     background-color: transparent;
     width: 100vw;
     position: relative;
+    z-index: 0;
 }
 
 .home-banner .bannerImg {
@@ -470,6 +509,43 @@ html {
         width: 300px;
         height: 368px;
     }
+}
+
+/* ====================== PROFILE ===================== */
+
+.profileMain {
+    padding: 20px;
+}
+
+.profileForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profileDetail {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.inputLabel {
+    font-weight: bold;
+}
+
+.profileHead {
+    display: flex;
+}
+
+.profileNames {
+    display: flex;
+}
+
+.profileNames p {
+    margin-right: 2px;
+}
+
+.profileAvatar {
+    width: 74px;
 }
 /* ===================== 404 ========================== */
 
