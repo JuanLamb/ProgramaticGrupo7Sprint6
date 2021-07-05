@@ -137,10 +137,12 @@ main.productDetail a {
         main.productDetail div.botones-superiores button {
             background-color: #e48257;
             color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
             flex: 1 1 40%;
+
+            text-decoration: none;
+ 
+            padding: 5px;
+            border-radius: 5px;
         }
             main.productDetail div.botones-superiores button.deleteButton {
                 background-color: red;
@@ -161,12 +163,11 @@ main.productDetail a {
     }
 
         main.productDetail section.caracteristicas div.botones-precio button {
-            flex: 1 1 10%;
+            text-decoration: none;
             background-color: #3a6351;
             color: white;
-            border: none;
+            padding: 5px;
             border-radius: 5px;
-            padding: 4px;
         }
         main.productDetail section.caracteristicas div.botones-precio button:hover {
             background-color: gold;
