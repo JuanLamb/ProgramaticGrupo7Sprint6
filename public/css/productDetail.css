@@ -191,9 +191,6 @@ main.productDetail a {
             flex-flow: wrap column;
             align-items: center;
         }
-            main.productDetail div.catalogProduct {
-                width: 100%;
-            }
 
 
     main.productDetail section.comentarios article {

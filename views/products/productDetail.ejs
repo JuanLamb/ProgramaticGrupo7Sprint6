@@ -21,7 +21,7 @@
     <main class="productDetail">
         <section class="imagenes">
             <div class="imagen-principal">
-                <img src="/images/productos/<%= product.image %> " alt="fotoPrincipal">
+                <img src="/images/productos/<%= product.image[0].name %> " alt="fotoPrincipal">
             </div>
         </section>
         
@@ -32,7 +32,7 @@
 
                 <div class="botones-superiores">
                     <form action="">
-                        <button><a href="/products/<%= product.id %>/edit ">Editar Admin</a></button>
+                        <button><a href="/products/<%= product.id %>/edit ">Ver detalles</a></button>
                     </form>
 
                     <form action="/products/<%= product.id %>?_method=DELETE" class="delete" method="POST" enctype="multipart/form-data">
@@ -72,14 +72,27 @@
             </div>
         </section>
 
-        <section class="recomendados">
+        <section class="recomendados"></section>
             <div class="titulo-seccion">
                 <h2>Productos de la misma categoría</h2>
             </div>
-            
-            <div class="productos">
 
-            </div>
+            <% filteredProducts.forEach (element => { %>
+                <% if (element.id != product.id) { %>
+                <div class="productos product-card">
+                    <div class="imgContainer">
+                        <a href="/products/<%= element.id %>"><img src="/images/productos/<%= element.image[0].name %> " alt="" class="img-prod"></a>
+                    </div>
+                    <div class="articleInfo">
+                        <i class="heart"></i>
+                        <h4 class="ProductName"><%= element.name %> </h4>
+                        <p class="productBrand"><%= element.brand.name %></p>
+                        <p class="productPrice">$<%= element.price %></p>
+                    </div>
+                </div>
+                <% } %>
+            
+            <% }) %>            
             
         </section>
 

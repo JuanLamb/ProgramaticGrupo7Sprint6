@@ -26,9 +26,14 @@ let productController = {
     readProduct: async (req, res) => {
         try {
             const product = await Products.findByPk(req.params.id, {include: ["brand", "gender", "color", "size", "category", "image"]});
+
+            const filteredProducts = await Products.findAll({
+                where: {categoryId: product.categoryId},
+                include: ["brand", "gender", "color", "size", "category", "image"]
+            })
             
             if (product) {
-                res.render('products/productDetail', { product });
+                res.render('products/productDetail', { product, filteredProducts });
             } else {
                 res.render('error404');
             }
@@ -36,6 +41,8 @@ let productController = {
             console.log(error);
             return res.status(500);
         }
+
+
 
         // const categoryProducts = productModel.findAllByField("categoria", product.categoria);
 /*      Filtraría los productos pero se rompe cuando solamente existe uno de una categoría.
