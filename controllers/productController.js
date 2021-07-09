@@ -22,14 +22,15 @@ let productController = {
             console.log(error);
             return res.status(500);
         }
-
     },
 
     readProduct: async (req, res) => {
         try {
-            const product = await Products.findByPk(req.params.id, {include: ["brand", "gender", "color", "size", "category", "image"]});
-                console.log(product)
+            // Busco producto por ID
+            const product = await Products.findByPk(req.params.id, {
+                include: ["brand", "gender", "color", "size", "category", "image"]});
 
+            // Busco todos los productos por categoria del product
             const filteredProducts = await Products.findAll({
                 where: {categoryId: product.categoryId},
                 include: ["brand", "gender", "color", "size", "category", "image"]
@@ -75,13 +76,16 @@ let productController = {
 
     recieveForm: async (req, res) => {
         try {
+            // recibo el body del form
             const product = req.body;
 
+            // si viene un file en body se almacena su nombre
             product.image = req.file ? req.file.filename : '';
 
+            // se crea el producto en DB
             let productoCreado = await Products.create(product);
-            console.log("se creo el producto");
-    
+
+            // se crea la imagen en DB
             let productImage = await Images.create({
                 name: product.image, 
                 productId: productoCreado.id
@@ -96,6 +100,7 @@ let productController = {
 
     modifyProduct: async (req, res) => {
         try {
+            // busco producto por segun params.id
             const product = await Products.findOne({
                 where: {id : req.params.id}, 
                 include: ["brand", "gender", "color", "size", "category", "image"]
@@ -105,6 +110,8 @@ let productController = {
             const productGenders = await Genders.findAll();
             const productColors = await Colors.findAll();
             const productSizes = await Sizes.findAll();
+
+            // Busco imagen correspondiente al producto buscado
             const productImages = await Images.findOne({where: {productId: product.id}});
             res.render('user/productEdit', { 
                 product,
@@ -122,12 +129,16 @@ let productController = {
 
     modifyForm: async (req, res) => {
         try {
+            // recibo el body del form
             let product = req.body;
+
+            // si viene un file en body se almacena su nombre, caso contrario se mantiene la imagen vieja
             product.image = req.file ? req.file.filename : req.body.oldImagen;
             if (req.body.image === undefined) {
                 product.image = product.oldImagen
             };
             delete product.oldImagen;
+            // se actualizan los datos del producto editado
             let updatedProduct = await Products.update({ 
                 name: product.name,
                 price: product.price,
@@ -145,10 +156,9 @@ let productController = {
             },
                 {where: { id: req.params.id }});
 
-            let productImage = await Images.update({
-                name: product.image
-            },
-                {where: {productId: req.params.id}});
+            // Se actualiza la imagen del producto editado
+            let productImage = await Images.update({name: product.image},{
+                    where: {productId: req.params.id}});
 
             res.redirect('/products/' + req.params.id);
         } catch (error) {
@@ -166,8 +176,11 @@ let productController = {
 
     searchProduct: async (req, res) => {
         try {
+            // almaceno query de busqueda
             let { search } = req.query;
+            // paso el string de busqueda a lower case
             search = search.toLowerCase();
+            // busco productos que incluyan en su nombre el string de busqueda
             let products = await Products.findAll({
                  where: {
                     name:  {[Op.like]: `%${search}%`}
@@ -183,9 +196,13 @@ let productController = {
 
     filterCategories: async (req, res) => {
         try {
+            // declaro array de productos
             let products = [];
-            if (req.params.category === "cuerdas" || req.params.category === "arneses" ) {
 
+            // Caso 1: si el params.category es "cuerdas" o "arneses"
+            if (req.params.category === "cuerdas" || req.params.category === "arneses" ) {
+                // declaro filter, este define si se buscaran todos los productos con arnes o cuerda en su nombre.
+                // cuerda y arnes no son categorias definidas en la DB
                 let filter = req.params.category === "cuerdas" ? "cuerda" : "arnes";
                 products = await Products.findAll({
                 where: {
@@ -193,9 +210,12 @@ let productController = {
                 },
                 include: ["brand", "gender", "color", "size", "category", "image"]
             });
+            // Caso 2: si el params.category es alguna de las categorias definidas en la DB
             } else {
+                // Declaro variable filter para buscar productos segun categoryID
                 let filter = 0;
                 switch (req.params.category) {
+                    // cada categoria asigna su Id a filter tal cual esta en la DB
                     case "escalada":
                         filter = 1;
                         break;
@@ -208,6 +228,7 @@ let productController = {
                     case "mochilas":
                         filter = 4;
                 }
+                // busca todos los productos segun category Id
                 products = await Products.findAll({
                 where: {
                     categoryId: filter

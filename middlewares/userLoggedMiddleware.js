@@ -4,12 +4,12 @@ const Users = db.User;
 
 async function userLoggedMiddleware(req, res, next) {
     res.locals.isLogged = false;
-
-    let emailInCookie = req.cookies.userEmail;
-    let userFromCookie = await Users.findOne({where: {email: emailInCookie}});
-
-    if (userFromCookie) {
-        req.session.userlogged = userFromCookie;
+    if (req.cookies.userEmail) {
+        let emailInCookie = await req.cookies.userEmail;
+        let userFromCookie = await Users.findOne({where: {email: emailInCookie}});
+        if (userFromCookie) {
+            req.session.userlogged = userFromCookie;
+        }
     }
 
     if (req.session && req.session.userLogged) {
