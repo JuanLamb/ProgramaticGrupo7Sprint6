@@ -4,10 +4,10 @@ const path = require('path');
 const validations = [
     body('firstName')
         .notEmpty().withMessage('Debes completar tu nombre').bail()
-        .isLength({ min: 3 }),
+        .isLength({ min: 2 }),
     body('lastName')
         .notEmpty().withMessage('Debes completar tu apellido').bail()
-        .isLength({ min: 3 }),
+        .isLength({ min: 2 }),
     body('username')
         .notEmpty().withMessage('Debes completar tu nombre de usuario'),
     body('email')
@@ -21,10 +21,11 @@ const validations = [
         .notEmpty().withMessage('Debes completar tu domicilio'),
     body('password')
         .notEmpty().withMessage('Debes completar tu contraseña').bail()
-        .isLength({ min: 6 }),
+        .isLength({ min: 8 }).bail()
+        .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/).withMessage('Tu contraseña debe contener una mayuscula, numero y caracter especial'),
     body('passwordConfirm')
         .notEmpty().withMessage('Debes confirmar tu contraseña').bail()
-        .isLength({ min: 6 })
+        .isLength({ min: 8 })
         .custom((value, { req }) => {
             if(value != req.body.password){
                 throw new Error('Las contraseñas no coinciden');
@@ -34,7 +35,7 @@ const validations = [
     body('avatar')
     .custom((value, { req }) => {
         let file = req.file;
-        let acceptedExtensions = ['.jpg', '.png'];
+        let acceptedExtensions = ['.jpg', '.png', '.jpeg', '.gif'];
 
 
         if(!file){

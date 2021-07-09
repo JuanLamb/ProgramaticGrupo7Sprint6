@@ -1,7 +1,7 @@
 window.onload = () => {
     // Almaceno elementos del DOM 
     const header = document.querySelector(".header-home");
-    const headerSearch = document.querySelector(".searchIcon");
+    const headerSearchIcon = document.querySelector(".searchIcon");
 
     // Creo elementos de la barra de busqueda
     const searchContainer = document.createElement("div");
@@ -37,7 +37,14 @@ window.onload = () => {
     header.appendChild(searchContainer);
 
     // Aplico transiciones a la barra de busqueda
-    headerSearch.addEventListener('click', () => {
+    headerSearchIcon.addEventListener('click', () => {
         searchContainer.classList.toggle("isDisplayed");
+    })
+
+    searchButton.addEventListener('click', (e) => {
+        if (searchInput.value == "") {
+            e.preventDefault();
+            alert("Debes llenar el campo de búsqueda");
+        }
     })
 }

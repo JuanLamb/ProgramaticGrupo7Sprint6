@@ -93,19 +93,6 @@ let userController = {
             include: ["avatar", "address"]
         })
 
-        if (!req.body.email && !req.body.password) {
-            return res.render('user/login', {
-                errors: {
-                    email: {
-                        msg: 'Debes completar los campos'
-                    },
-                    password: {
-                        msg: 'Debes completar los campos'
-                    }
-                }
-            })            
-        };
-
         if (userToLogin) {
             let isOkThePassword = bcryptjs.compareSync(req.body.password, userToLogin.password);
 			if (isOkThePassword) {

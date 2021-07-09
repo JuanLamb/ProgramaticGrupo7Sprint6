@@ -1,3 +1,6 @@
+// const db = require('../src/database/models');
+// const sequelize = db.sequelize;
+
 const model = require('../model/model');
 
 const userModel = model('datosUsuarios');

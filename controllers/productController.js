@@ -167,9 +167,6 @@ let productController = {
     searchProduct: async (req, res) => {
         try {
             let { search } = req.query;
-            if (search == "") {
-                res.redirect("/")
-            } else {
             search = search.toLowerCase();
             let products = await Products.findAll({
                  where: {
@@ -177,8 +174,7 @@ let productController = {
                 },
                 include: ["brand", "gender", "color", "size", "category", "image"]
             })
-                res.render('products/productCatalog', { products }) 
-            }
+                res.render('products/productCatalog', { products })
         } catch (error) {
             console.log(error);
             return res.status(500);
@@ -220,21 +216,6 @@ let productController = {
             })};
             
                 res.render('products/productCatalog', { products })
-        } catch (error) {
-            console.log(error);
-            return res.status(500);
-        }
-    },
-
-    searchArneses: async (req, res) => {
-        try {
-            let products = await Products.findAll({
-                where: {
-                    name:  {[Op.like]: `%arnes%`}
-                },
-                include: ["brand", "gender", "color", "size", "category", "image"]
-            })
-             res.render('products/productCatalog', { products })
         } catch (error) {
             console.log(error);
             return res.status(500);
