@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="right-navbarItem">
-                            <a href="/profile"><i class="fas fa-user-circle"></i></a>
+                            <a><i class="fas fa-user-circle userIcon"></i></a>
                         </div>
 
                         <div class="right-navbarItem">
@@ -45,7 +45,7 @@
                     </div> 
 
                     <div class="right-navbarItem">
-                        <a href="/profile"><i class="fas fa-user-circle"></i></a>
+                        <a><i class="fas fa-user-circle userIcon"></i></a>
                     </div>
 
                     <div class="right-navbarItem">
@@ -59,7 +59,7 @@
                     </div> 
 
                     <div class="right-navbarItem">
-                        <a href="/login"><i class="fas fa-user-circle"></i></a>
+                        <a><i class="fas fa-user-circle userIcon"></i></a>
                     </div>
 
                     <div class="right-navbarItem">
@@ -70,5 +70,16 @@
             </div>
         </nav>
     </section>
-    <script src="/js/headerJS.js"></script>
+
+    <% if(locals.isLogged){ %>
+        <a href="/profile" id="userAnchor1" class="userButton">Mi Perfil</a>
+        <a href="/logout" id="userAnchor2" class="userButton">Salir</a>
+    <% }else{ %>
+        <a href="/register" id="userAnchor1" class="userButton">Registrarme</a>
+        <a href="/login" id="userAnchor2" class="userButton">Login</a>
+    <% } %>
+    
+    <script src="/js/headerSearchBar.js">
+    </script><script src="/js/headerUser.js"></script>
+
 </header>

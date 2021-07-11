@@ -42,7 +42,7 @@ html {
     border-bottom: solid 5px #3a6351;
     background-color: #f2edd7;
     position: relative;
-    z-index: 1;
+    z-index: 100;
 }
 
 .header-home img {
@@ -160,6 +160,7 @@ html {
     position: relative;
     transform: translateY(-40px);
     transition: all .3s ease-in-out;
+    z-index: 1;
 }
 
 .searchInput {
@@ -177,6 +178,38 @@ html {
 
 .searchButtonText {
     color: white !important;
+}
+
+.userContainer {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    z-index: 0;
+    transform: translateY(-80px);
+    transition: all .3s ease-in-out;
+    opacity: 0;
+    margin-right: 10px;
+}
+
+.childContainer{
+    width: 135px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    background-color: #393232;
+    padding: 5px;
+}
+
+.userDisplayed {
+    transform: translateY(-40px);
+    opacity: 0.7;
+}
+
+.childContainer a {
+    color: #fff;
 }
 
 @media (min-width: 769px) {
