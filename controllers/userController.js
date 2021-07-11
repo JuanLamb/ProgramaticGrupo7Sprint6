@@ -29,6 +29,13 @@ let userController = {
     shopCart2: (req, res) => {
         res.render('user/productCart2');
     },
+    shopCart3: (req, res) => {
+        res.render('user/productCart3');
+    },
+    shopCart4: (req, res) => {
+        res.render('user/productCart4');
+    },
+
 
     recieveFormRegister: async (req, res) =>{
         try {
