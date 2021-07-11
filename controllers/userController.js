@@ -65,13 +65,17 @@ let userController = {
             };
 
             let addressCreated = await Addresses.create(addressToCreate);
-
             let userToCreate = {
                 ...req.body, 
                 password: bcryptjs.hashSync(req.body.password,10),
                 avatarId: avatarCreated.id,
                 addressId: addressCreated.id,
-                roleId: 1
+            };
+
+            if (body.email.includes("@botacura.admin.com")) {
+                userToCreate.roleId = 2;
+            } else {
+                userToCreate.roleId = 1;
             }
             
             delete userToCreate.passwordConfirm;

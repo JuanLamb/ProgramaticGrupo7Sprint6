@@ -31,17 +31,17 @@
         <section class="caracteristicas">
             <div class="titulo-seccion">
                 <h2><%= product.name %> </h2>
-
-                <div class="botones-superiores">
-                    <form action="">
-                        <button><a href="/products/<%= product.id %>/edit ">Ver detalles</a></button>
-                    </form>
-
-                    <form action="/products/<%= product.id %>?_method=DELETE" class="delete" method="POST" enctype="multipart/form-data">
-                        <button class="deleteButton" type="submit">Borrar producto</button>
-                    </form>
-                </div>
-                
+                <% if(locals.isLogged && locals.userLogged.roleId == 2){ %>
+                    <div class="botones-superiores">
+                        <form action="">
+                            <button><a href="/products/<%= product.id %>/edit ">Ver detalles</a></button>
+                        </form>
+    
+                        <form action="/products/<%= product.id %>?_method=DELETE" class="delete" method="POST" enctype="multipart/form-data">
+                            <button class="deleteButton" type="submit">Borrar producto</button>
+                        </form>
+                    </div>
+                <% } %>
             </div>
             
             <div class="formulario">
