@@ -18,6 +18,10 @@ router.get('/productCart', userController.shopCart);
 
 router.get('/productCart2',authMiddleware, userController.shopCart2);
 
+router.get('/productCart3',authMiddleware, userController.shopCart3);
+
+router.get('/productCart4',authMiddleware, userController.shopCart4);
+
 router.post('/register', upload.single('avatar'), validations, userController.recieveFormRegister);  /* RECIBE DATOS DEL FORMULARIO DE CREACION DE USUARIO // AGREGAR VALIDACIONES*/ 
 
 router.post('/login', userController.recieveFormLogin);  /* RECIBE DATOS DEL FORMULARIO DE LOGIN DE USUARIO */
