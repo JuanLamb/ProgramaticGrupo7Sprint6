@@ -5,6 +5,7 @@ const validations = require('../middlewares/validations');
 const storage = require('../middlewares/multerStorage');
 const authMiddleware = require('../middlewares/authMiddleware');
 const guestMiddleware = require('../middlewares/guestMiddleware');
+const loginMiddleware = require('../middlewares/loginMiddleware');
 
 const upload = multer({ storage });
 
@@ -24,7 +25,7 @@ router.get('/productCart4',authMiddleware, userController.shopCart4);
 
 router.post('/register', upload.single('avatar'), validations, userController.recieveFormRegister);  /* RECIBE DATOS DEL FORMULARIO DE CREACION DE USUARIO // AGREGAR VALIDACIONES*/ 
 
-router.post('/login', userController.recieveFormLogin);  /* RECIBE DATOS DEL FORMULARIO DE LOGIN DE USUARIO */
+router.post('/login', loginMiddleware, userController.recieveFormLogin);  /* RECIBE DATOS DEL FORMULARIO DE LOGIN DE USUARIO */
 
 router.put('/editUser', upload.single('avatar'), userController.modifyForm);   /* RECIBE FORMULARIO DE EDICION */
 

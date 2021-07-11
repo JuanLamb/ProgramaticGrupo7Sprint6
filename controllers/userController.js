@@ -72,13 +72,17 @@ let userController = {
             };
 
             let addressCreated = await Addresses.create(addressToCreate);
-
             let userToCreate = {
                 ...req.body, 
                 password: bcryptjs.hashSync(req.body.password,10),
                 avatarId: avatarCreated.id,
                 addressId: addressCreated.id,
-                roleId: 1
+            };
+
+            if (body.email.includes("@botacura.admin.com")) {
+                userToCreate.roleId = 2;
+            } else {
+                userToCreate.roleId = 1;
             }
             
             delete userToCreate.passwordConfirm;
@@ -99,19 +103,6 @@ let userController = {
             where: {email: loginEmail},
             include: ["avatar", "address"]
         })
-
-        if (!req.body.email && !req.body.password) {
-            return res.render('user/login', {
-                errors: {
-                    email: {
-                        msg: 'Debes completar los campos'
-                    },
-                    password: {
-                        msg: 'Debes completar los campos'
-                    }
-                }
-            })            
-        };
 
         if (userToLogin) {
             let isOkThePassword = bcryptjs.compareSync(req.body.password, userToLogin.password);

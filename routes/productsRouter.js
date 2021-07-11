@@ -14,26 +14,31 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-router.get('/', productController.readAll);   /* LISTADO DE PRODUCTOS RENDERIZA CATALOGO DE PRODUCTOS*/
+/* LISTADO DE PRODUCTOS, RENDERIZA CATALOGO DE PRODUCTOS*/
+router.get('/', productController.readAll);
 
-router.get('/create', productController.createProduct);  /* FORMULARIO DE CARGA */
+/* FORMULARIO DE CARGA */
+router.get('/create', productController.createProduct);
 
-router.get('/search', productController.searchProduct);  /* BUSCA UN PRODUCTO  */
+/* BUSCA UN PRODUCTO */
+router.get('/search', productController.searchProduct);
 
-router.get('/productCategories/:category', productController.filterCategories); /* FILTRA CUERDAS/ARNESES */
+/* FILTRA PRODUCTOS SEGUN CATEGORIA/CUERDAS/ARNESES */
+router.get('/productCategories/:category', productController.filterCategories);
 
-router.get('/:id', productController.readProduct);    /* LEER PRODUCTO SEGUN ID */
+/* LEE PRODUCTO SEGUN ID */
+router.get('/:id', productController.readProduct);    
 
-router.post('/', upload.single('image'), productController.recieveForm);  /* RECIBE DATOS DEL FORMULARIO DE CREACION */
+/* RECIBE DATOS DEL FORMULARIO DE CREACION */
+router.post('/', upload.single('image'), productController.recieveForm);  
 
-router.get('/:id/edit', productController.modifyProduct);  /* MODIFICA PRODUCTO SEGUN ID */
+/* MODIFICA PRODUCTO SEGUN ID */
+router.get('/:id/edit', productController.modifyProduct);  
 
-router.put('/:id', upload.single('image'), productController.modifyForm);   /* RECIBE FORMULARIO DE EDICION */
+/* RECIBE FORMULARIO DE EDICION */
+router.put('/:id', upload.single('image'), productController.modifyForm);   
 
-router.delete('/:id', productController.deleteProduct);  /* ELIMINA PRODUCTO  */
-
-
-
-
+/* ELIMINA PRODUCTO  */
+router.delete('/:id', productController.deleteProduct);  
 
 module.exports = router;
