@@ -4,6 +4,7 @@ const path = require('path');
 const { body } = require('express-validator');
 const productController = require('../controllers/productController');
 const router = express.Router();
+const productValidations = require('../middlewares/ProductValidations');
 
 const storage = multer.diskStorage({
     destination: path.resolve(__dirname, '../public/images/productos'),
@@ -30,7 +31,7 @@ router.get('/productCategories/:category', productController.filterCategories);
 router.get('/:id', productController.readProduct);    
 
 /* RECIBE DATOS DEL FORMULARIO DE CREACION */
-router.post('/', upload.single('image'), productController.recieveForm);  
+router.post('/', upload.single('image'), productValidations, productController.recieveForm);  
 
 /* MODIFICA PRODUCTO SEGUN ID */
 router.get('/:id/edit', productController.modifyProduct);  

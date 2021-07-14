@@ -1,6 +1,8 @@
+const { validationResult } = require('express-validator');
 const db = require('../src/database/models');
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
+
 
 const Products = db.Product;
 const Images = db.Image;
@@ -76,8 +78,31 @@ let productController = {
 
     recieveForm: async (req, res) => {
         try {
+            let brands = await Brands.findAll();
+            let genders = await Genders.findAll();
+            let colors = await Colors.findAll();
+            let sizes = await Sizes.findAll();
+            let categories = await Categories.findAll();
+
+            // recibo array de errores de validacion
+            const resultValidation = validationResult(req);
+
             // recibo el body del form
             const product = req.body;
+            console.log(resultValidation.errors);
+            console.log(req.body.offer);
+            // checkeo si existen errores
+            if (resultValidation.errors.length > 0) {
+                return res.render('user/productForm', {
+                    errors: resultValidation.mapped(),
+                    oldData: req.body,
+                    brands,
+                    genders,
+                    colors,
+                    sizes,
+                    categories
+                });
+            }
 
             // si viene un file en body se almacena su nombre
             product.image = req.file ? req.file.filename : '';
