@@ -32,13 +32,21 @@
         
                         <div class="nombre">
                             <label for="nombre">Nombre</label>
-                            <input type="text" name="name" id="nombre" value="<%= product.name %>">
+                            <input type="text" 
+                                   name="name" 
+                                   id="nombre"
+                                   class= "<%= locals.errors && errors.name ? 'is-invalid' : null %>"
+                                   value="<%= locals.errors ? oldData.name : product.name %>">
+                                    <% if (locals.errors && errors.name) { %>
+                                        <p class="inputError"><%= errors.name.msg  %> </p>  
+                                    <% } %>
+                                   
                         </div>
         
                         <div class="marca">
                             <label for="marca">Marca</label>
                             <select name="brandId" id="marca">
-                                <% productBrands.forEach(brand => { %>
+                                <% brands.forEach(brand => { %>
                                     <% if (brand.id == product.brandId) { %>
                                         <option value="<%= product.brandId %>" selected> <%= product.brand.name %> </option>
                                     <% }else{ %>
@@ -51,7 +59,7 @@
                         <div class="genero">
                             <label for="genero">Genero</label>
                             <select name="genderId" id="genero">
-                                <% productGenders.forEach(gender => { %>
+                                <% genders.forEach(gender => { %>
                                     <% if (gender.id == product.genderId) { %>
                                         <option value="<%= product.genderId %>" selected> <%= product.gender.type %> </option>
                                     <% }else{ %>
@@ -65,7 +73,7 @@
                             <div class="categoria">
                                 <label for="categoria">Categoría</label>
                                 <select name="categoryId" id="categoria">
-                                    <% productCategories.forEach(category => { %>
+                                    <% categories.forEach(category => { %>
                                         <% if (category.id == product.categoryId) { %>
                                             <option value="<%= product.categoryId %>" selected> <%= product.category.name %> </option>
                                         <% }else{ %>
@@ -78,7 +86,7 @@
                             <div class="color">
                                 <label for="color">Categoría</label>
                                 <select name="colorId" id="color">
-                                    <% productColors.forEach(color => { %>
+                                    <% colors.forEach(color => { %>
                                         <% if (color.id == product.colorId) { %>
                                             <option value="<%= product.colorId %>" selected> <%= product.color.color %> </option>
                                         <% }else{ %>
@@ -91,7 +99,7 @@
                             <div class="size">
                                 <label class="tallesTitle" for="size">Categoría</label>
                                 <select name="sizeId" id="size">
-                                    <% productSizes.forEach(size => { %>
+                                    <% sizes.forEach(size => { %>
                                         <% if (size.id == product.sizeId) { %>
                                             <option value="<%= product.sizeId %>" selected> <%= product.size.type %> </option>
                                         <% }else{ %>
@@ -104,24 +112,48 @@
                        <div class="priceBoxes">
                             <div class="precio">
                                 <label for="precio">Precio</label>
-                                <input type="number" name="price" id="precio" value="<%= product.price %>">
+                                <input type="number" 
+                                       name="price" 
+                                       id="precio" 
+                                       class= "<%= locals.errors && errors.price ? 'is-invalid' : null %>"
+                                       value="<%= locals.errors ? oldData.price : product.price %>">
+                                    <% if (locals.errors && errors.price) { %>
+                                        <p class="inputError"><%= errors.price.msg  %> </p>  
+                                    <% } %>
                             </div>
             
                             <div class="descuento">
                                 <label for="descuento">Descuento</label>
-                                <input type="number" name="discount" id="descuento" value="<%= product.discount %>">
+                                <input type="number"
+                                        name="discount" 
+                                        id="descuento" 
+                                        class= "<%= locals.errors && errors.discount ? 'is-invalid' : null %>"
+                                        value="<%= locals.errors ? oldData.discount : product.discount %>">
+                                    <% if (locals.errors && errors.discount) { %>
+                                        <p class="inputError"><%= errors.discount.msg  %> </p>  
+                                    <% } %>
                             </div>
                        </div>
     
                        <div class="descripcion">
                             <label for="descripcion">Descripción</label>
-                            <textarea name="description" id="descripcion" ><%= product.description %></textarea>
+                            <textarea name="description" 
+                                      id="descripcion"
+                                      class= "<%= locals.errors && errors.description ? 'is-invalid' : null %>" >
+                                      <%= locals.errors ? oldData.description : product.description %>
+                                    </textarea>
+                                    <% if (locals.errors && errors.description) { %>
+                                        <p class="inputError"><%= errors.description.msg  %> </p>  
+                                    <% } %>
                         </div>
     
                         <div class="imagen">
                             <label for="imagen">Imagen</label>
                             <input type="file" name="image" id="imagen" accept=".jpg">
-                            <input type="hidden" name="oldImagen" value="<%= productImages.name %>">
+                            <input type="hidden" name="oldImagen" value="<%= image.name %>">
+                            <% if (locals.errors && errors.image) { %>
+                                <p class="inputError"><%= errors.image.msg  %> </p>  
+                            <% } %>
                         </div>
 
                         <div class="radios">
@@ -158,12 +190,26 @@
 
                         <div class="stock">
                             <label for="stockMin">StockMin</label>
-                            <input type="number" name="stockMin" id="stockMin" value="<%= product.stockMin %>">
+                            <input type="number" 
+                                   name="stockMin" 
+                                   id="stockMin" 
+                                   class= "<%= locals.errors && errors.stockMin ? 'is-invalid' : null %>"
+                                   value="<%= locals.errors ? oldData.stockMin : product.stockMin %>">
+                                    <% if (locals.errors && errors.stockMin) { %>
+                                        <p class="inputError"><%= errors.stockMin.msg  %> </p>  
+                                    <% } %>
                         </div>
     
                         <div class="stock">
                             <label for="stockMax">StockMax</label>
-                            <input type="number" name="stockMax" id="stockMax" value="<%= product.stockMax %>">
+                            <input type="number" 
+                                   name="stockMax" 
+                                   id="stockMax" 
+                                   class= "<%= locals.errors && errors.stockMax ? 'is-invalid' : null %>"
+                                   value="<%= locals.errors ? oldData.stockMax : product.stockMax %>">
+                                    <% if (locals.errors && errors.stockMax) { %>
+                                        <p class="inputError"><%= errors.stockMax.msg  %> </p>  
+                                    <% } %>
                         </div>
                         
                         <div class="botones">

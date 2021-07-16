@@ -89,9 +89,8 @@ let productController = {
 
             // recibo el body del form
             const product = req.body;
-            console.log(resultValidation.errors);
-            console.log(req.body.offer);
-            // checkeo si existen errores
+
+            // checkeo si existen errores // renderizo vista creacion si es true + errores
             if (resultValidation.errors.length > 0) {
                 return res.render('user/productForm', {
                     errors: resultValidation.mapped(),
@@ -130,22 +129,22 @@ let productController = {
                 where: {id : req.params.id}, 
                 include: ["brand", "gender", "color", "size", "category", "image"]
             });
-            const productCategories = await Categories.findAll();
-            const productBrands = await Brands.findAll();
-            const productGenders = await Genders.findAll();
-            const productColors = await Colors.findAll();
-            const productSizes = await Sizes.findAll();
+            const categories = await Categories.findAll();
+            const brands = await Brands.findAll();
+            const genders = await Genders.findAll();
+            const colors = await Colors.findAll();
+            const sizes = await Sizes.findAll();
 
             // Busco imagen correspondiente al producto buscado
-            const productImages = await Images.findOne({where: {productId: product.id}});
+            const image = await Images.findOne({where: {productId: product.id}});
             res.render('user/productEdit', { 
                 product,
-                productCategories, 
-                productBrands, 
-                productGenders, 
-                productImages, 
-                productColors, 
-                productSizes });
+                categories, 
+                brands, 
+                genders, 
+                image, 
+                colors, 
+                sizes });
         } catch (error) {
             console.log(error);
             return res.status(500);
@@ -154,35 +153,74 @@ let productController = {
 
     modifyForm: async (req, res) => {
         try {
+            // busco producto por segun params.id
+            const product = await Products.findOne({
+                where: {id : req.params.id}, 
+                include: ["brand", "gender", "color", "size", "category", "image"]
+            });
+            
+            let brands = await Brands.findAll();
+            let genders = await Genders.findAll();
+            let colors = await Colors.findAll();
+            let sizes = await Sizes.findAll();
+            let categories = await Categories.findAll();
+
+            // recibo array de errores de validacion
+            const resultValidation = validationResult(req);
+
             // recibo el body del form
-            let product = req.body;
+            const productBody = req.body;
+
+            const image = {};
+
+            // checkeo si existen errores // renderizo vista edicion si es true + errores
+            if (resultValidation.errors.length > 0) {
+                console.log("entraste al if Errors")
+                image.name = req.file ? req.file.filename : productBody.oldImagen;
+                if (resultValidation.errors.image) {
+                    console.log("entraste al if imageErrors")
+                    // si se sube imagen en formato incorrecto conservo imagen vieja
+                    image.name = productBody.oldImagen;
+                }
+                return res.render('user/productEdit', {
+                    errors: resultValidation.mapped(),
+                    oldData: req.body,
+                    product,
+                    brands,
+                    genders,
+                    colors,
+                    sizes,
+                    categories,
+                    image
+                });
+            }
 
             // si viene un file en body se almacena su nombre, caso contrario se mantiene la imagen vieja
-            product.image = req.file ? req.file.filename : req.body.oldImagen;
-            if (req.body.image === undefined) {
-                product.image = product.oldImagen
+            productBody.image = req.file ? req.file.filename : productBody.oldImagen;
+            if (productBody.image === undefined) {
+                productBody.image = productBody.oldImagen
             };
-            delete product.oldImagen;
+            delete productBody.oldImagen;
             // se actualizan los datos del producto editado
             let updatedProduct = await Products.update({ 
-                name: product.name,
-                price: product.price,
-                stockMin: product.stockMin,
-                stockMax: product.stockMax,
-                discount: product.discount,
-                description: product.description,
-                offer: product.offer,
-                season: product.season,
-                brandId: product.brandId,
-                colorId: product.colorId,
-                sizeId: product.sizeId,
-                categoryId: product.categoryId,
-                genderId: product.genderId 
+                name: productBody.name,
+                price: productBody.price,
+                stockMin: productBody.stockMin,
+                stockMax: productBody.stockMax,
+                discount: productBody.discount,
+                description: productBody.description,
+                offer: productBody.offer,
+                season: productBody.season,
+                brandId: productBody.brandId,
+                colorId: productBody.colorId,
+                sizeId: productBody.sizeId,
+                categoryId: productBody.categoryId,
+                genderId: productBody.genderId 
             },
                 {where: { id: req.params.id }});
 
             // Se actualiza la imagen del producto editado
-            let productImage = await Images.update({name: product.image},{
+            let productImage = await Images.update({name: productBody.image},{
                     where: {productId: req.params.id}});
 
             res.redirect('/products/' + req.params.id);
