@@ -22,58 +22,59 @@
 
         <%- include('../partials/header') %>
 
-        <main>
-            <div class="login-title">
-                <h2>Ingresá a tu cuenta</h2>
-            </div>
+            <main>
+                <div class="login-title">
+                    <h2>Ingresá a tu cuenta</h2>
+                </div>
+                    
+                    <form action="/login" method="post" form="form-login" class="form-login" id="login-form">
+                        <div class="login-form">
+                            <div class="login-usuario">
+                                <input type="text" name="email" id="email" placeholder="Email"
+                                    class="loginInput <%= locals.errors && errors.email ? 'is-invalid' : null %>"
+                                    value="<%= locals.oldData ? oldData.email : null %>">
+                                <% if (locals.errors && errors.email) { %>
+                                    <p class="inputError">
+                                        <%= errors.email.msg %>
+                                    </p>
+                                    <% } %>
+                                    
+                            </div>
 
-                <form action="/login" method="post" form="form-login" class="form-login">
-                    <div class="login-form">
-                        <div class="login-usuario">
-                            <input type="text" 
-                                   name="email" 
-                                   id="email" 
-                                   placeholder="Email"
-                                   class= "loginInput <%= locals.errors && errors.email ? 'is-invalid' : null %>"
-                                   value="<%= locals.oldData ? oldData.email : null %>" >
-                                   <% if (locals.errors && errors.email) { %>
-                                    <p class="inputError"><%= errors.email.msg  %> </p>  
-                                <% } %>
-                        </div>
+                            <div class="login-password">
+                                <input type="password" name="password" id="password" placeholder="Contraseña"
+                                    class="loginInput <%= locals.errors && errors.password ? 'is-invalid' : null %>"
+                                    value="<%= locals.oldData ? oldData.password : null %>">
+                                <% if (locals.errors && errors.password) { %>
+                                    <p class="inputError">
+                                        <%= errors.password.msg %>
+                                    </p>
+                                    <% } %>
+                                    <div class="error" id="error"></div>
+                            </div>
 
-                        <div class="login-password">
-                            <input type="password" 
-                                   name="password" 
-                                   id="password" 
-                                   placeholder="Contraseña"
-                                   class= "loginInput <%= locals.errors && errors.password ? 'is-invalid' : null %>"
-                                   value="<%= locals.oldData ? oldData.password : null %>" >
-                                   <% if (locals.errors && errors.password) { %>
-                                    <p class="inputError"><%= errors.password.msg  %> </p>  
-                                <% } %>
-                        </div>
-
-                        <div class="rememberMe">
+                            <div class="rememberMe">
 
                                 <div class="inputContainer">
                                     <label for="rememberUser">Recordar mi usuario</label>
-                                    <input type="checkbox" class="rememberMeInput" name="rememberUser" id="rememberUser">
+                                    <input type="checkbox" class="rememberMeInput" name="rememberUser"
+                                        id="rememberUser">
                                 </div>
 
+                            </div>
+
+                            <div class="login-button">
+                                <button type="submit">Enviar</button>
+                            </div>
+                            <p class="form-link">Aún no estas registrado? <a href="/register">Registrate aquí</a></p>
                         </div>
 
-                        <div class="login-button">
-                            <button type="submit">Enviar</button>
-                        </div>
-                        <p class="form-link">Aún no estas registrado? <a href="/register">Registrate aquí</a></p>
-                    </div>
-
-                </form>
-        </main>
+                    </form>
+            </main>
 
 
             <%- include('../partials/footer') %>
-
+                <script src="script/form-login-validator.js"></script>
     </body>
 
 </html>

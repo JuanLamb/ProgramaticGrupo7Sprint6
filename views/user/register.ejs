@@ -30,7 +30,7 @@
 
             </div>
 
-            <form action="/register" method="POST" form="form-registro" class="form-registro" enctype="multipart/form-data">
+            <form action="/register" method="POST" form="form-registro" class="form-registro" enctype="multipart/form-data" id="form-registro">
  
                         <div class="registerInput">
                             <input 
@@ -113,7 +113,7 @@
 
                         <div class="registerInput">
                             <input 
-                                type="text" 
+                                type="number" 
                                 name="number" 
                                 id="domicilio" 
                                 placeholder="numero" 
@@ -161,15 +161,17 @@
                     
                     <div class="button">
                         <button type="reset">Cancelar</button>
-                        <button type="submit">Enviar</button>
+                        <button class="register-button" type="submit">Enviar</button>
                     </div>
 
                     <p class="form-link">Ya estás registrado? <a href="/login">Ingrese aquí</a></p>
+
+                    <div class="error" id="error"></div>
             </form>
         </main>
 
             <%- include('../partials/footer') %>
-
+            <script src="script/form-register-validator.js"></script>
     </body>
 
 </html>
