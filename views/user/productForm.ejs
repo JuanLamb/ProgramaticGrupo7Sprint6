@@ -23,7 +23,7 @@
 
         <section class="edicionCreacion">
             <article class="caracteristicas">
-                <form method="POST" action="/products" enctype="multipart/form-data">
+                <form method="POST" action="/products" enctype="multipart/form-data" id="product-form">
     
                     <div class="nombre">
                         <label for="nombre">Nombre</label>
@@ -143,7 +143,7 @@
                                        name="offer" 
                                        id="true" 
                                        value="1"
-                                       class= "<%= locals.errors && errors.offer ? 'is-invalid' : null %>"
+                                       class= "<%= locals.errors && errors.offer ? 'is-invalid' : null %> oferta"
                                        <%= locals.oldData && oldData.offer == 1 ? "checked" : null %>>
                             </div>
     
@@ -153,7 +153,7 @@
                                        name="offer" 
                                        id="false" 
                                        value="2"
-                                       class= "<%= locals.errors && errors.offer ? 'is-invalid' : null %>"
+                                       class= "<%= locals.errors && errors.offer ? 'is-invalid' : null %> oferta"
                                        <%= locals.oldData && oldData.offer == 2 ? "checked" : null %>>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                                        name="season" 
                                        id="true" 
                                        value="1"
-                                       class= "<%= locals.errors && errors.season ? 'is-invalid' : null %>"
+                                       class= "<%= locals.errors && errors.season ? 'is-invalid' : null %> temporada"
                                        <%= locals.oldData && oldData.season == 1 ? "checked" : null %>>
                             </div>
     
@@ -180,7 +180,7 @@
                                        name="season" 
                                        id="false" 
                                        value="2"
-                                       class= "<%= locals.errors && errors.season ? 'is-invalid' : null %>"
+                                       class= "<%= locals.errors && errors.season ? 'is-invalid' : null %> temporada"
                                        <%= locals.oldData && oldData.season == 2 ? "checked" : null %>>
                             </div>
                         </div>
@@ -215,16 +215,22 @@
                     </div>
                     
                     <div class="botonGuardar">
-                        <button type="submit">Cargar</button>
+                        <button type="submit" class="product-button">Cargar</button>
                     </div>
 
+                    
+
                 </form>
+
+                <div class="error" id="error"></div>
+
             </article>
             
         </section>
     </main>
 
     <%- include('../partials/footer') %>
+    <script src="js/product-create-validator.js"></script>
     
 </body>
 </html>
