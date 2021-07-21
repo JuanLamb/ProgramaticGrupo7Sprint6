@@ -28,7 +28,7 @@
     
             <section class="edicionCreacion">
                 <article class="caracteristicas">
-                    <form method="POST" action="/products/<%= product.id %>?_method=PUT" enctype="multipart/form-data">
+                    <form id="product-form" method="POST" action="/products/<%= product.id %>?_method=PUT" enctype="multipart/form-data">
         
                         <div class="nombre">
                             <label for="nombre">Nombre</label>
@@ -40,7 +40,7 @@
                                     <% if (locals.errors && errors.name) { %>
                                         <p class="inputError"><%= errors.name.msg  %> </p>  
                                     <% } %>
-                                   
+                                   <p></p>
                         </div>
         
                         <div class="marca">
@@ -120,6 +120,7 @@
                                     <% if (locals.errors && errors.price) { %>
                                         <p class="inputError"><%= errors.price.msg  %> </p>  
                                     <% } %>
+                                    <p></p>
                             </div>
             
                             <div class="descuento">
@@ -132,6 +133,7 @@
                                     <% if (locals.errors && errors.discount) { %>
                                         <p class="inputError"><%= errors.discount.msg  %> </p>  
                                     <% } %>
+                                    <p></p>
                             </div>
                        </div>
     
@@ -145,6 +147,7 @@
                                     <% if (locals.errors && errors.description) { %>
                                         <p class="inputError"><%= errors.description.msg  %> </p>  
                                     <% } %>
+                                    <p></p>
                         </div>
     
                         <div class="imagen">
@@ -154,6 +157,7 @@
                             <% if (locals.errors && errors.image) { %>
                                 <p class="inputError"><%= errors.image.msg  %> </p>  
                             <% } %>
+                            <p></p>
                         </div>
 
                         <div class="radios">
@@ -198,6 +202,7 @@
                                     <% if (locals.errors && errors.stockMin) { %>
                                         <p class="inputError"><%= errors.stockMin.msg  %> </p>  
                                     <% } %>
+                                    <p></p>
                         </div>
     
                         <div class="stock">
@@ -210,6 +215,7 @@
                                     <% if (locals.errors && errors.stockMax) { %>
                                         <p class="inputError"><%= errors.stockMax.msg  %> </p>  
                                     <% } %>
+                                    <p></p>
                         </div>
                         
                         <div class="botones">
@@ -224,7 +230,7 @@
         </main>
 
         <%- include('../partials/footer') %>
-
+        <script src="/js/product-create-validator.js"></script>
     </body>
 
 </html>
