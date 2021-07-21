@@ -152,8 +152,8 @@
     
                         <div class="imagen">
                             <label for="imagen">Imagen</label>
-                            <input type="file" name="image" id="imagen" accept=".jpg">
-                            <input type="hidden" name="oldImagen" value="<%= image.name %>">
+                            <input type="file" name="image" id="imagen" >
+                            <input type="hidden" name="oldImagen" value="<%= image.name %>" id="hiddenImage">
                             <% if (locals.errors && errors.image) { %>
                                 <p class="inputError"><%= errors.image.msg  %> </p>  
                             <% } %>
@@ -230,7 +230,7 @@
         </main>
 
         <%- include('../partials/footer') %>
-        <script src="/js/product-create-validator.js"></script>
+        <script src="/js/product-edit-validator.js"></script>
     </body>
 
 </html>

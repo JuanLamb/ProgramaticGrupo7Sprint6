@@ -103,14 +103,15 @@ let validateDescripcion = () => {
 
 let validateImagen = () => {
     let feedback = "";
-    let feedbackElement = imagen.nextElementSibling;
+    let feedbackElement = hiddenImage.nextElementSibling;
     let acceptedExtensions = ['jpg', 'png', 'jpeg', 'gif'];
     let filename = imagen.value;
     let fileExtension = filename.split(".").pop();
+    console.log(hiddenImage.value)
 
-    if (imagen.files[0] == undefined) {
+    if (imagen.files[0] == undefined && !hiddenImage.value) {
         feedback = "Debes cargar una imagen"
-    }else if(!acceptedExtensions.includes(fileExtension)) {
+    }else if(imagen.files[0] && !acceptedExtensions.includes(fileExtension)) {
         feedback = `Las extensiones de archivo permitidas son ${acceptedExtensions.join(', ')}`
     }
 
