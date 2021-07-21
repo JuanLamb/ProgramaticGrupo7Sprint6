@@ -106,7 +106,6 @@ let validateImagen = () => {
     let acceptedExtensions = ['jpg', 'png', 'jpeg', 'gif'];
     let filename = imagen.value;
     let fileExtension = filename.split(".").pop();
-    console.log(fileExtension)
 
     if (imagen.files[0] == undefined) {
         feedback = "Debes cargar una imagen"
