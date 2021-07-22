@@ -1,7 +1,7 @@
 const { body, validationResult } = require('express-validator');
 const path = require('path');
 
-const validations = [
+const productValidations = [
     body('name')
     .notEmpty().withMessage('Debes completar el nombre').bail()
     .isLength({ min: 2 }),
@@ -37,4 +37,4 @@ const validations = [
     }),
 ];
 
-module.exports = validations;
+module.exports = productValidations;
