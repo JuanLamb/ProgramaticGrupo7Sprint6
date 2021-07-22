@@ -6,7 +6,8 @@ window.addEventListener("load",() => {
     const headerUserIcon = document.querySelector(".userIcon");
     const userAnchor1 = document.getElementById("userAnchor1");
     const userAnchor2 = document.getElementById("userAnchor2");
-
+    const userAnchors = document.querySelectorAll(".userButton");
+    console.log(userAnchors);
 
     // Creo elementos de la barra de busqueda
     const userContainer = document.createElement("div");
@@ -19,13 +20,12 @@ window.addEventListener("load",() => {
     childContainer2.classList.add("childContainer");
 
     // creo boton "nuevo producto" SOLO ADMIN
-    // if (document.getElementbyId("userAnchor3")) {
-    //     const userAnchor3 = document.getElementbyId("userAnchor3");
-    //     const childContainer3 = document.createElement("div");
-    //     childContainer3.classList.add("childContainer");
-    //     childContainer3.appendChild(userAnchor3);
-    //     userContainer.appendChild(childContainer3);
-    // };
+    if (userAnchors[1].id = "userAnchor3") {
+        const childContainer3 = document.createElement("div");
+        childContainer3.classList.add("childContainer", "adminContainer");
+        childContainer3.appendChild(userAnchors[1]);
+        userContainer.appendChild(childContainer3);
+    };
 
     // ensamblo la barra de navegacion de usuario
     childContainer1.appendChild(userAnchor1);

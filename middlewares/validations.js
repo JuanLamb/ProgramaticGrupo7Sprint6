@@ -13,8 +13,6 @@ const validations = [
     body('email')
         .notEmpty().withMessage('Debes completar tu e-mail').bail()
         .isEmail().withMessage('Debes escribir un correo valido'),
-    body('birthday')
-        .notEmpty().withMessage('Debes completar tu fecha de nacimiento'),
     body('street')
         .notEmpty().withMessage('Debes completar tu domicilio'),
     body('number')
