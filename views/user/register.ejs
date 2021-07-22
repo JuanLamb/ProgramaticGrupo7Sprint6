@@ -43,6 +43,7 @@
                             <% if (locals.errors && errors.firstName) { %>
                                 <p class="inputError"><%= errors.firstName.msg  %> </p>  
                             <% } %>
+                            <p></p>
                         </div>
                         <div class="registerInput">
                             <input 
@@ -55,6 +56,7 @@
                             <% if (locals.errors && errors.lastName) { %>
                                 <p class="inputError"><%= errors.lastName.msg  %> </p>  
                             <% } %>
+                            <p></p>
                         </div>
 
                         <div class="registerInput">
@@ -69,6 +71,7 @@
                             <% if (locals.errors && errors.username) { %>
                                 <p class="inputError"><%= errors.username.msg  %> </p>  
                             <% } %>
+                            <p></p>
                         </div>
 
                         <div class="registerInput">
@@ -82,20 +85,7 @@
                             <% if (locals.errors && errors.email) { %>
                                 <p class="inputError"><%= errors.email.msg  %> </p>  
                             <% } %>
-                        </div>
-
-                        <h4>Fecha de nacimiento:</h4>
-
-                        <div class="registerInput">
-                            <input 
-                                type="date" 
-                                name="birthday" 
-                                id="nacimiento" 
-                                class= "<%= locals.errors && errors.birthday ? 'is-invalid' : null %>"
-                                value="<%= locals.oldData ? oldData.birthday : null %>">
-                            <% if (locals.errors && errors.birthday) { %>
-                                <p class="inputError"><%= errors.birthday.msg  %> </p>  
-                            <% } %>
+                            <p></p>
                         </div>
 
                         <div class="registerInput">
@@ -105,10 +95,11 @@
                                 id="Calle" 
                                 placeholder="Calle" 
                                 class= "<%= locals.errors && errors.street ? 'is-invalid' : null %>"
-                                value="<%= locals.oldData ? oldData.street : null %>">
+                                value="<%= locals.oldData ? oldData.street : null %>" >
                             <% if (locals.errors && errors.street) { %>
                                 <p class="inputError"><%= errors.street.msg  %> </p>  
                             <% } %>
+                            <p></p>
                         </div>
 
                         <div class="registerInput">
@@ -118,10 +109,11 @@
                                 id="domicilio" 
                                 placeholder="numero" 
                                 class= "<%= locals.errors && errors.number ? 'is-invalid' : null %>"
-                                value="<%= locals.oldData ? oldData.number : null %>">
+                                value="<%= locals.oldData ? oldData.number : null %>" min="0">
                             <% if (locals.errors && errors.number) { %>
                                 <p class="inputError"><%= errors.number.msg  %> </p>  
                             <% } %>
+                            <p></p>
                         </div>
 
                         <div class="registerInput">
@@ -135,6 +127,7 @@
                             <% if (locals.errors && errors.password) { %>
                                 <p class="inputError"><%= errors.password.msg  %> </p>  
                             <% } %>
+                            <p></p>
                         </div>
 
                         <div class="registerInput">
@@ -148,15 +141,16 @@
                                 <% if (locals.errors && errors.passwordConfirm) { %>
                                 <p class="inputError"><%= errors.passwordConfirm.msg  %> </p>  
                                 <% } %>
+                                <p></p>
                         </div>
-
-                    <h4>Imagen de usuario</h4>
+                        
                     <div class="registerInput">
 
                         <input type="file" name="avatar" id="avatar" >
                         <% if (locals.errors && errors.avatar) { %>
                             <p class="inputError"><%= errors.avatar.msg  %> </p>  
                         <% } %>
+                        <p></p>
                     </div>
                     
                     <div class="button">

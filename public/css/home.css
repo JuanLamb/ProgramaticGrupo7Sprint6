@@ -166,7 +166,6 @@ html {
 .searchInput {
     background-color: transparent;
     border: none;
-    border-bottom: solid 1px white;
     color: white;
     width: 100%;
 }
@@ -210,6 +209,10 @@ html {
 
 .childContainer a {
     color: #fff;
+}
+
+.displayNone {
+    display: none;
 }
 
 @media (min-width: 769px) {
@@ -793,4 +796,17 @@ html {
 
 .footerBottom li a:hover {
     border-bottom: solid 1px #f2edd7;
+}
+
+/* ========== VALIDACIONES ===============*/
+
+.error-input {
+    border: solid 2px #e48257;
+}
+
+#product-form div p,
+.login-usuario p,
+.registerInput p {
+    color: #e48257;
+    font-weight: 600;
 }

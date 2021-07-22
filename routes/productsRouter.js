@@ -4,8 +4,8 @@ const path = require('path');
 const { body } = require('express-validator');
 const productController = require('../controllers/productController');
 const router = express.Router();
-const productValidations = require('../middlewares/ProductValidations');
-const productEditValidations = require('../middlewares/ProductEditValidations');
+const productValidations = require('../middlewares/productValidations.js');
+const productEditValidations = require('../middlewares/productEditValidations');
 
 const storage = multer.diskStorage({
     destination: path.resolve(__dirname, '../public/images/productos'),

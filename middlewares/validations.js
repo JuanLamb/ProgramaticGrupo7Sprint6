@@ -13,8 +13,6 @@ const validations = [
     body('email')
         .notEmpty().withMessage('Debes completar tu e-mail').bail()
         .isEmail().withMessage('Debes escribir un correo valido'),
-    body('birthday')
-        .notEmpty().withMessage('Debes completar tu fecha de nacimiento'),
     body('street')
         .notEmpty().withMessage('Debes completar tu domicilio'),
     body('number')
@@ -22,7 +20,7 @@ const validations = [
     body('password')
         .notEmpty().withMessage('Debes completar tu contraseña').bail()
         .isLength({ min: 8 }).bail()
-        .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/).withMessage('Tu contraseña debe contener una mayuscula, numero y caracter especial'),
+        .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/).withMessage('Tu contraseña debe contener una mayuscula, minuscula, numero y caracter especial'),
     body('passwordConfirm')
         .notEmpty().withMessage('Debes confirmar tu contraseña').bail()
         .isLength({ min: 8 })

@@ -1,7 +1,7 @@
 const { body } = require('express-validator');
 const path = require('path');
 
-const validations = [
+const productValidations = [
     body('name')
     .notEmpty().withMessage('Debes completar el nombre').bail()
     .isLength({ min: 2 }),
@@ -16,6 +16,10 @@ const validations = [
     .notEmpty().withMessage('Debes seleccionar una opción'),
     body('season')
     .notEmpty().withMessage('Debes seleccionar una opción'),
+    body('stockMin')
+    .notEmpty().withMessage('Debes ingresar un stock minimo').bail(),
+    body('stockMax')
+    .notEmpty().withMessage('Debes ingresar un stock maximo').bail(),
     body('image')
     .custom((value, { req }) => {
         let file = req.file;
@@ -31,10 +35,6 @@ const validations = [
         }
         return true;
     }),
-    body('stockMin')
-    .notEmpty().withMessage('Debes ingresar un stock minimo').bail(),
-    body('stockMax')
-    .notEmpty().withMessage('Debes ingresar un stock maximo').bail()
 ];
 
-module.exports = validations;
+module.exports = productValidations;
