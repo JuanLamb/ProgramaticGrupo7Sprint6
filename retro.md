@@ -98,6 +98,31 @@ seguir generando reuniones semanales donde reevaluariamos los puntos de la estre
 
 - Revisiones grupales de las tareas
 
+21/07/2021
+
+## Start doing:
+
+- Hacer testeos de la pagina en general (funcionalidades, cambios de estilos, etc) de forma individual de forma semanal y registrar los posibles cambios para el futuro
+
+## Keep doing:
+
+- Avisar en slack cuando alguien se pone a programar
+
+- Avisar en slack cada vez que alguien pushea al repo
+
+- Reuniones semanales
+
+- Division de tareas
+
+- Resolucion de tareas complejas en forma grupal
+
+- Revisiones grupales de las tareas
+
+- Revision grupal de sprint terminado y testeo de funcionalidades:
+    Se propone realizar un testeo de forma grupal de las funcionalidades ya creadas para el sprint a entregar. Ademas se aprovechara el espacio para
+    corregir estilos en caso de ser necesario y proponer cambios menores.
+
+
 ### Retrospectiva expandida en Trello:
 
 - https://trello.com/b/5YJIfmRT/retrospectiva

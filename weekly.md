@@ -57,3 +57,11 @@ Se armó una reunión con el objetivo de adaptar el CRUD de Productos previo a u
 30/06/2021
 
 Se realizó una reunion para continuar con el CRUD de usuarios. Se finalizó la funcionalidad de searchProduct también. Queda pendiente armar la vista de usuario para vincularla con la funcionalidad de editar usuario.
+
+19/07/2021
+
+Se armo una reunion para terminar entre todos las validaciones del Front de registro y login de usuarios, Nico nos presento sus avances y trabajamos sobre eso. Quedaron pendientes las validaciones de Front de creacion y edicion de productos.
+
+21/07/2021
+
+Se realizaron grupalmente las validaciones de creacion y edicion de productos. Se concretaron los requisitos del sprint 7.
