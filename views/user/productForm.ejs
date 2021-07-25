@@ -93,7 +93,8 @@
                                    id="precio" 
                                    min="0"
                                    class= "<%= locals.errors && errors.price ? 'is-invalid' : null %>"
-                                   value="<%= locals.oldData ? oldData.price : null %>">
+                                   value="<%= locals.oldData ? oldData.price : null %>"
+                                   min="0">
                                    <% if (locals.errors && errors.price) { %>
                                     <p class="inputError"><%= errors.price.msg  %> </p>  
                                 <% } %>
@@ -107,7 +108,9 @@
                                    id="descuento" 
                                    min="0"
                                    class= "<%= locals.errors && errors.discount ? 'is-invalid' : null %>"
-                                   value="<%= locals.oldData ? oldData.discount : null %>">
+                                   value="<%= locals.oldData ? oldData.discount : null %>"
+                                   min="0"
+                                   max="100">
                                    <% if (locals.errors && errors.discount) { %>
                                     <p class="inputError"><%= errors.discount.msg  %> </p>  
                                 <% } %>
@@ -149,7 +152,7 @@
                                        id="true" 
                                        value="1"
                                        class= "<%= locals.errors && errors.offer ? 'is-invalid' : null %> oferta"
-                                       <%= locals.oldData && oldData.offer == 1 ? "checked" : null %> required>
+                                       <%= locals.oldData && oldData.offer == 1 ? "checked" : null %> >
                             </div>
     
                             <div class="radioContainer">
@@ -159,7 +162,7 @@
                                        id="false" 
                                        value="2"
                                        class= "<%= locals.errors && errors.offer ? 'is-invalid' : null %> oferta"
-                                       <%= locals.oldData && oldData.offer == 2 ? "checked" : null %> required>
+                                       <%= locals.oldData && oldData.offer == 2 ? "checked" : null %> checked>
                             </div>
                             
                         </div>
@@ -177,7 +180,7 @@
                                        id="true" 
                                        value="1"
                                        class= "<%= locals.errors && errors.season ? 'is-invalid' : null %> temporada"
-                                       <%= locals.oldData && oldData.season == 1 ? "checked" : null %> required>
+                                       <%= locals.oldData && oldData.season == 1 ? "checked" : null %> >
                             </div>
     
                             <div class="radioContainer">
@@ -187,7 +190,7 @@
                                        id="false" 
                                        value="2"
                                        class= "<%= locals.errors && errors.season ? 'is-invalid' : null %> temporada"
-                                       <%= locals.oldData && oldData.season == 2 ? "checked" : null %> required>
+                                       <%= locals.oldData && oldData.season == 2 ? "checked" : null %> checked>
                             </div>
                         </div>
                         <% if (locals.errors && errors.season) { %>
@@ -202,7 +205,8 @@
                                name="stockMin" 
                                id="stockMin"
                                class= "<%= locals.errors && errors.stockMin ? 'is-invalid' : null %>"
-                               value= "<%= locals.oldData ? oldData.stockMin : null %>">
+                               value= "<%= locals.oldData ? oldData.stockMin : null %>"
+                               min="0">
                                <% if (locals.errors && errors.stockMin) { %>
                                 <p class="inputError"><%= errors.stockMin.msg  %> </p>  
                             <% } %>
@@ -215,14 +219,18 @@
                                name="stockMax" 
                                id="stockMax"
                                class= "<%= locals.errors && errors.stockMax ? 'is-invalid' : null %>"
-                               value= "<%= locals.oldData ? oldData.stockMax : null %>">
+                               value= "<%= locals.oldData ? oldData.stockMax : null %>"
+                               min="0">
                                <% if (locals.errors && errors.stockMax) { %>
                                 <p class="inputError"><%= errors.stockMax.msg  %> </p>  
                             <% } %>
                             <p></p>
                     </div>
                     
-                    <div class="botonGuardar">
+                    <div class="botones">
+                        <button>
+                            <a href="/products">Catálogo</a>
+                        </button>
                         <button type="submit" class="product-button">Cargar</button>
                     </div>
 

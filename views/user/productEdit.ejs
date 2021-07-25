@@ -116,7 +116,8 @@
                                        name="price" 
                                        id="precio" 
                                        class= "<%= locals.errors && errors.price ? 'is-invalid' : null %>"
-                                       value="<%= locals.errors ? oldData.price : product.price %>">
+                                       value="<%= locals.errors ? oldData.price : product.price %>"
+                                       min="0">
                                     <% if (locals.errors && errors.price) { %>
                                         <p class="inputError"><%= errors.price.msg  %> </p>  
                                     <% } %>
@@ -129,7 +130,9 @@
                                         name="discount" 
                                         id="descuento" 
                                         class= "<%= locals.errors && errors.discount ? 'is-invalid' : null %>"
-                                        value="<%= locals.errors ? oldData.discount : product.discount %>">
+                                        value="<%= locals.errors ? oldData.discount : product.discount %>"
+                                        min="0"
+                                        max="100">
                                     <% if (locals.errors && errors.discount) { %>
                                         <p class="inputError"><%= errors.discount.msg  %> </p>  
                                     <% } %>
@@ -198,7 +201,8 @@
                                    name="stockMin" 
                                    id="stockMin" 
                                    class= "<%= locals.errors && errors.stockMin ? 'is-invalid' : null %>"
-                                   value="<%= locals.errors ? oldData.stockMin : product.stockMin %>">
+                                   value="<%= locals.errors ? oldData.stockMin : product.stockMin %>"
+                                   min="0">
                                     <% if (locals.errors && errors.stockMin) { %>
                                         <p class="inputError"><%= errors.stockMin.msg  %> </p>  
                                     <% } %>
@@ -211,7 +215,8 @@
                                    name="stockMax" 
                                    id="stockMax" 
                                    class= "<%= locals.errors && errors.stockMax ? 'is-invalid' : null %>"
-                                   value="<%= locals.errors ? oldData.stockMax : product.stockMax %>">
+                                   value="<%= locals.errors ? oldData.stockMax : product.stockMax %>"
+                                   min="0">
                                     <% if (locals.errors && errors.stockMax) { %>
                                         <p class="inputError"><%= errors.stockMax.msg  %> </p>  
                                     <% } %>
@@ -219,6 +224,12 @@
                         </div>
                         
                         <div class="botones">
+                            <button>
+                                <a href="/products/<%= product.id %>">Producto</a>
+                            </button>
+                            <button>
+                                <a href="/products">Catálogo</a>
+                            </button>
                             <button type="submit">Actualizar</button>
                         </div>
     

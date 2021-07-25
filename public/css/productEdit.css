@@ -21,6 +21,32 @@ main.productForm {
             display: flex;
             justify-content: space-around;
         }
+        
+        .botones {
+            flex-flow: row !important;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .botones button {
+            justify-content: center;
+            background-color: #3a6351;
+            padding: 5px;
+            border-radius: 5px;
+            width: 90px;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .botones button:hover {
+            background-color: #70b195;
+            transition: 300ms;
+        }
+
+        .botones button a {
+            text-decoration: none;
+            color: #fff;
+        }
 
         main.productForm article.caracteristicas form div {
             display: flex;
@@ -48,24 +74,6 @@ main.productForm {
         .formBoxes select, 
         .formBoxes label {
             width: 200px;
-        }
-
-        .botones {
-            align-items: flex-end;
-        }
-
-        .botones button {
-            justify-content: center;
-            background-color: #3a6351;
-            padding: 5px;
-            border-radius: 5px;
-            width: 90px;
-            color: #fff;
-        }
-
-        .botones button:hover {
-            background-color: #70b195;
-            transition: 300ms;
         }
 
         .edicionCreacion input {

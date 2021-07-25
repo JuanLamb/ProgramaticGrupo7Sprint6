@@ -46,7 +46,7 @@ let validatePrecio = () => {
     let feedback = "";
     let feedbackElement = precio.nextElementSibling;
 
-    if (precio.value == "") {
+    if (precio.value == "" || precio.value == 0) {
         feedback = "El precio no puede estar vacio"
     }
 
@@ -54,7 +54,7 @@ let validatePrecio = () => {
         precio.classList.add('error-input');
         errors.precio = feedback;
     }else {
-        nombre.classList.remove('error-input');
+        precio.classList.remove('error-input');
         delete errors.precio;
     }
 
@@ -73,7 +73,7 @@ let validateDescuento = () => {
         descuento.classList.add('error-input');
         errors.descuento = feedback;
     }else {
-        nombre.classList.remove('error-input');
+        descuento.classList.remove('error-input');
         delete errors.descuento;
     }
 
@@ -151,6 +151,8 @@ let validateStockMax = () => {
 
     if (stockMax.value.trim() == "") {
         feedback = "El campo stockMax no puede estar vacio"
+    } else if (stockMax.value < stockMin.value) {
+        feedback = "StockMax no puede ser menor a stockMin"
     }
 
     if (feedback) {
@@ -182,9 +184,10 @@ form.addEventListener('submit', (e) => {
     validateStockMin();
     validateStockMax();
     validateImagen();
-    console.log(errors)
     // si existen errores prevent default
     if (Object.keys(errors).length) {
         e.preventDefault();
+    }  else {
+        alert(`Se actualizó el producto ${nombre.value}`)
     }
 })

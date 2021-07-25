@@ -49,22 +49,30 @@ main.productForm {
             width: 200px;
         }
 
-        .botonGuardar {
-            align-items: flex-end;
+        .botones {
+            flex-flow: row !important;
+            justify-content: flex-end;
+            align-items: center;
         }
         
-        .botonGuardar button {
+        .botones button {
             justify-content: center;
             background-color: #3a6351;
             padding: 5px;
             border-radius: 5px;
             width: 90px;
             color: #fff;
+            margin-right: 10px;
         }
 
-        .botonGuardar button:hover {
+        .botones button:hover {
             background-color: #70b195;
             transition: 300ms;
+        }
+
+        .botones button a {
+            text-decoration: none;
+            color: #fff;
         }
 
         .edicionCreacion input {
