@@ -148,10 +148,10 @@ let validateStockMin = () => {
 let validateStockMax = () => {
     let feedback = "";
     let feedbackElement = stockMax.nextElementSibling;
-
+    let validationResult = stockMax.value - stockMin.value;
     if (stockMax.value.trim() == "") {
         feedback = "El campo stockMax no puede estar vacio"
-    } else if (stockMax.value < stockMin.value) {
+    } else if (validationResult <= 0) {
         feedback = "StockMax no puede ser menor a stockMin"
     }
 
