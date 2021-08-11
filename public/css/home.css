@@ -552,6 +552,12 @@ html {
 
 .profileMain {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #3a6351;
+    margin: 10px;
+    border-radius: 10px;
 }
 
 .profileForm {
@@ -571,6 +577,9 @@ html {
 
 .profileHead {
     display: flex;
+    align-items: center;
+    width: 300px;
+    justify-content: space-between;
 }
 
 .profileNames {
